@@ -5,6 +5,12 @@
     rev = "2a1ab1b703f954edb39efb73e72b44c0d18b30a2";
     hash = "sha256-Oxmxe+MquqXOzZMdNZwnf2vFnYYI2u8bp/Hhk+fCh0s=";
   };
+  eofnewline = pkgs.fetchFromGitHub {
+    owner = "bokunodev";
+    repo = "lite_modules";
+    rev = "a93a10dc55afd57c074cb2e2b9bbd917b756aa4d";
+    sha256 = "sha256-ZEebVZlTynvXOJi4RfvPVogcKB1i1wF8mAf18lxI/Fg=";
+  };
   language_ksy = pkgs.fetchFromGitHub {
     owner = "whiteh0le";
     repo = "lite-plugins";

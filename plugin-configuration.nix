@@ -165,9 +165,14 @@ in [
       description = "Provides basic drag and drop of selected text (in same document)";
     }
   )
-  # UNIMPLEMENTED
-  # "eofnewline"
-  # "Make sure the file ends with one blank line."
+  rec {
+    name = "eofnewline";
+    description = "Make sure the file ends with one blank line.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.eofnewline {
+      home.file."${pluginDirectory}/eofnewline.lua".source = "${externalRepos.eofnewline}/plugins/eofnewline-xl.lua";
+    };
+  }
   (
     mkSimplePlugin {
       name = "ephemeral_tabs";
