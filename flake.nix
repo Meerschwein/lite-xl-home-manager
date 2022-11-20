@@ -4,6 +4,6 @@
   inputs = {};
 
   outputs = {...} : {
-    homeManagerModules = import ./default;
+    homeManagerModules = import ./default.nix;
   };
 }
