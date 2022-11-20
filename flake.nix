@@ -10,11 +10,12 @@
     inputs.utils.lib.mkFlake {
       inherit self inputs;
 
+      homeManagerModules = import ./default.nix;
+
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
         formatter = pkgs.treefmt;
-        homeManagerModules = import ./default.nix;
 
         devShell = pkgs.mkShell {
           packages = with pkgs; [
