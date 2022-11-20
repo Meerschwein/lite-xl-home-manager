@@ -22,27 +22,48 @@ with lib; let
   };
 
   # A file named ${name}.lua must be in the lite-xl plugins dir
-  mkSimplePlugin = name: description: {
+  mkSimplePlugin = {
+    name,
+    description,
+    extraOptions ? {},
+    extraConfig ? {},
+  }: {
     inherit name description;
-    config = mkIf cfg.plugins.${name} (linkFileFromPluginsIntoPluginDir "${name}.lua");
-    options = pluginEnableOption name description;
+    options = recursiveUpdate (pluginEnableOption name description) extraOptions;
+    config = mkIf cfg.plugins.${name} (mkMerge [
+      (linkFileFromPluginsIntoPluginDir "${name}.lua")
+      extraConfig
+    ]);
   };
 
   # The whole repository gets linked into the plugin directory
   # So it is needs to be a plugin with an init.lua file in there
-  mkSimplePluginExternalRepo = name: description: {
+  mkSimplePluginExternalRepo = {
+    name,
+    description,
+    extraOptions ? {},
+    extraConfig ? {},
+  }: {
     inherit name description;
-    config = mkIf cfg.plugins.${name} {
-      home.file."${pluginDirectory}/${name}" = {
-        recursive = true;
-        source = externalRepos.${name};
-      };
-    };
-    options = pluginEnableOption name description;
+    options = recursiveUpdate (pluginEnableOption name description) extraOptions;
+    config = mkIf cfg.plugins.${name} (mkMerge [
+      {
+        home.file."${pluginDirectory}/${name}" = {
+          recursive = true;
+          source = externalRepos.${name};
+        };
+      }
+      extraConfig
+    ]);
   };
 
   # Only takes a file with ${name} from externalRepos.${name}
-  mkPluginSingleFileInExternalRepo = name: description: {
+  mkPluginSingleFileInExternalRepo = {
+    name,
+    description,
+    extraOptions ? {},
+    extraConfig ? {},
+  }: {
     inherit name description;
     options = pluginEnableOption name description;
     config = mkIf cfg.plugins.${name} {
@@ -51,146 +72,152 @@ with lib; let
   };
 in [
   (
-    mkSimplePlugin
-    "align_carets"
-    "Align multiple carets and selections *([clip](https://user-images.githubusercontent.com/2798487/165631951-532f8d24-d596-4dd0-9d21-ff53c71ed32f.mp4))*"
+    mkSimplePlugin {
+      name = "align_carets";
+      description = "Align multiple carets and selections *([clip](https://user-images.githubusercontent.com/2798487/165631951-532f8d24-d596-4dd0-9d21-ff53c71ed32f.mp4))*";
+    }
   )
   (
-    mkSimplePlugin
-    "autoinsert"
-    "Automatically inserts closing brackets and quotes. Also allows selected text to be wrapped with brackets or quotes."
+    mkSimplePlugin {
+      name = "autoinsert";
+      description = "Automatically inserts closing brackets and quotes. Also allows selected text to be wrapped with brackets or quotes.";
+    }
   )
   (
-    mkSimplePlugin
-    "autosave"
-    "Automatically saves files when they are changed"
+    mkSimplePlugin {
+      name = "autosave";
+      description = "Automatically saves files when they are changed";
+    }
   )
   (
-    mkSimplePlugin
-    "autosaveonfocuslost"
-    "Automatically saves files that were changed when the main window loses focus by switching to another application"
+    mkSimplePlugin {
+      name = "autosaveonfocuslost";
+      description = "Automatically saves files that were changed when the main window loses focus by switching to another application";
+    }
   )
   (
-    mkSimplePlugin
-    "autowrap"
-    "Automatically hardwraps lines when typing"
+    mkSimplePlugin {
+      name = "autowrap";
+      description = "Automatically hardwraps lines when typing";
+    }
   )
   (
-    mkSimplePlugin
-    "bigclock"
-    "Shows the current time and date in a view with large text *([screenshot](https://user-images.githubusercontent.com/3920290/82752891-3318df00-9db9-11ea-803f-261d80d5cf53.png))*"
-  )
-  rec {
-    name = "black";
-    description = "Integrates the [black](https://github.com/psf/black) Python formatter with lite";
-    config = mkIf cfg.plugins.black {
-      home.packages = [pkgs.black];
-      home.file."${pluginDirectory}/black" = {
-        recursive = true;
-        source = externalRepos.black;
-      };
-    };
-    options = {
-      options.programs.lite-xl.plugins.black = mkEnableOption description;
-    };
-  }
-  (
-    mkSimplePlugin
-    "bracketmatch"
-    "Underlines matching pair for bracket under the caret *([screenshot](https://user-images.githubusercontent.com/3920290/80132745-0c863f00-8594-11ea-8875-c455c6fd7eae.png))*"
+    mkSimplePlugin {
+      name = "bigclock";
+      description = "Shows the current time and date in a view with large text *([screenshot](https://user-images.githubusercontent.com/3920290/82752891-3318df00-9db9-11ea-803f-261d80d5cf53.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "centerdoc"
-    "Centers document's content on the screen and adds zen mode support *([screenshot](https://user-images.githubusercontent.com/3920290/82127896-bf6e4500-97ae-11ea-97fc-ba9a552bc9a4.png))*"
+    mkSimplePluginExternalRepo {
+      name = "black";
+      description = "Integrates the [black](https://github.com/psf/black) Python formatter with lite";
+      extraConfig = {home.packages = [pkgs.black];};
+    }
   )
   (
-    mkSimplePlugin
-    "colorpreview"
-    "Underlays color values (eg. `#ff00ff` or `rgb(255, 0, 255)`) with their resultant color. *([screenshot](https://user-images.githubusercontent.com/3920290/80743752-731bd780-8b15-11ea-97d3-847db927c5dc.png))*"
+    mkSimplePlugin {
+      name = "bracketmatch";
+      description = "Underlines matching pair for bracket under the caret *([screenshot](https://user-images.githubusercontent.com/3920290/80132745-0c863f00-8594-11ea-8875-c455c6fd7eae.png))*";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "console"
-    "A console for running external commands and capturing their output *([gif](https://user-images.githubusercontent.com/3920290/81343656-49325a00-90ad-11ea-8647-ff39d8f1d730.gif))*"
+    mkSimplePlugin {
+      name = "centerdoc";
+      description = "Centers document's content on the screen and adds zen mode support *([screenshot](https://user-images.githubusercontent.com/3920290/82127896-bf6e4500-97ae-11ea-97fc-ba9a552bc9a4.png))*";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "contextmenu"
-    "Simple context menu *([screenshot](https://github.com/takase1121/lite-contextmenu/blob/master/assets/screenshot.jpg?raw=true))*"
+    mkSimplePlugin {
+      name = "colorpreview";
+      description = "Underlays color values (eg. `#ff00ff` or `rgb(255, 0, 255)`) with their resultant color. *([screenshot](https://user-images.githubusercontent.com/3920290/80743752-731bd780-8b15-11ea-97d3-847db927c5dc.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "copyfilelocation"
-    "Copy file location to clipboard"
+    mkSimplePluginExternalRepo {
+      name = "console";
+      description = "A console for running external commands and capturing their output *([gif](https://user-images.githubusercontent.com/3920290/81343656-49325a00-90ad-11ea-8647-ff39d8f1d730.gif))*";
+    }
   )
   (
-    mkSimplePlugin
-    "datetimestamps"
-    "Insert date-, time- and date-time-stamps"
+    mkSimplePluginExternalRepo {
+      name = "contextmenu";
+      description = "Simple context menu *([screenshot](https://github.com/takase1121/lite-contextmenu/blob/master/assets/screenshot.jpg?raw=true))*";
+    }
   )
-  # UNIMPLEMENTED
-  # (
-  #   mkSimplePlugin
-  #   "discord-presence"
-  #   "Adds the current workspace and file to your Discord Rich Presence"
-  # )
   (
-    mkSimplePlugin
-    "dragdropselected"
-    "Provides basic drag and drop of selected text (in same document)"
+    mkSimplePlugin {
+      name = "copyfilelocation";
+      description = "Copy file location to clipboard";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "datetimestamps";
+      description = "Insert date-, time- and date-time-stamps";
+    }
   )
   # UNIMPLEMENTED
-  # (
-  #   mkSimplePlugin
-  #   "eofnewline"
-  #   "Make sure the file ends with one blank line."
-  # )
+  # "discord-presence"
+  # "Adds the current workspace and file to your Discord Rich Presence"
   (
-    mkSimplePlugin
-    "ephemeral_tabs"
-    "Preview tabs. Opening a doc will replace the contents of the preview tab. Marks tabs as non-preview on any change or tab double clicking."
-  )
-  (
-    mkPluginSingleFileInExternalRepo
-    "equationgrapher"
-    "Graphs y=x equations."
-  )
-  (
-    mkSimplePlugin
-    "eval"
-    "Replaces selected Lua code with its evaluated result"
-  )
-  (
-    mkSimplePlugin
-    "exec"
-    "Runs selected text through shell command and replaces with result"
-  )
-  (
-    mkSimplePlugin
-    "extend_selection_line"
-    "When a selection crosses multiple lines, it is drawn to the end of the screen *([screenshot](https://user-images.githubusercontent.com/2798487/140995616-89a20b55-5917-4df8-8a7c-d7c53732fa8b.png))*"
-  )
-  (
-    mkSimplePlugin
-    "exterm"
-    "Allows to open an external console in current project directory"
+    mkSimplePlugin {
+      name = "dragdropselected";
+      description = "Provides basic drag and drop of selected text (in same document)";
+    }
   )
   # UNIMPLEMENTED
-  # (
-  #   mkSimplePlugin
-  #   "fallbackfonts"
-  #   "Adds support for fallback fonts *([gif](https://raw.githubusercontent.com/takase1121/lite-fallback-fonts/master/assets/Iw18fI57J0.gif))*"
-  # )
+  # "eofnewline"
+  # "Make sure the file ends with one blank line."
   (
-    mkSimplePlugin
-    "fontconfig"
-    "Allows users to load fonts with [fontconfig](https://www.freedesktop.org/software/fontconfig/fontconfig-user.html)."
+    mkSimplePlugin {
+      name = "ephemeral_tabs";
+      description = "Preview tabs. Opening a doc will replace the contents of the preview tab. Marks tabs as non-preview on any change or tab double clicking.";
+    }
   )
   (
-    mkSimplePlugin
-    "force_syntax"
-    "Change the syntax used for a file."
+    mkPluginSingleFileInExternalRepo {
+      name = "equationgrapher";
+      description = "Graphs y=x equations.";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "eval";
+      description = "Replaces selected Lua code with its evaluated result";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "exec";
+      description = "Runs selected text through shell command and replaces with result";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "extend_selection_line";
+      description = "When a selection crosses multiple lines, it is drawn to the end of the screen *([screenshot](https://user-images.githubusercontent.com/2798487/140995616-89a20b55-5917-4df8-8a7c-d7c53732fa8b.png))*";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "exterm";
+      description = "Allows to open an external console in current project directory";
+    }
+  )
+  # UNIMPLEMENTED
+  # "fallbackfonts"
+  # "Adds support for fallback fonts *([gif](https://raw.githubusercontent.com/takase1121/lite-fallback-fonts/master/assets/Iw18fI57J0.gif))*"
+  (
+    mkSimplePlugin {
+      name = "fontconfig";
+      description = "Allows users to load fonts with [fontconfig](https://www.freedesktop.org/software/fontconfig/fontconfig-user.html).";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "force_syntax";
+      description = "Change the syntax used for a file.";
+    }
   )
   (let
     formatterconfigs = mapAttrsToList (name: packages: {inherit name packages;}) {
@@ -224,6 +251,10 @@ in [
     config = mkIf (cfg.plugins.formatter || any (c: cfg.formatter.${c.name}) formatterconfigs) (mkMerge [
       {home.file."${pluginDirectory}/formatter.lua".source = "${externalRepos.formatter}/formatter.lua";}
 
+      (mkIf cfg.formatter.esformatter {warnings = ["esformatter was not found in nixpkgs you have install it on your own!"];})
+      (mkIf cfg.formatter.goimports {warnings = ["goimports was not found in nixpkgs you have install it on your own!"];})
+      (mkIf cfg.formatter.qmlformat {warnings = ["qmlformat was not found in nixpkgs you have install it on your own!"];})
+
       (mkMerge (map (c:
         mkIf cfg.formatter.${c.name} {
           home.packages = c.packages;
@@ -233,215 +264,254 @@ in [
     ]);
   })
   (
-    mkSimplePlugin
-    "ghmarkdown"
-    "Opens a preview of the current markdown file in a browser window *([screenshot](https://user-images.githubusercontent.com/3920290/82754898-f7394600-9dc7-11ea-8278-2305363ed372.png))*"
+    mkSimplePlugin {
+      name = "ghmarkdown";
+      description = "Opens a preview of the current markdown file in a browser window *([screenshot](https://user-images.githubusercontent.com/3920290/82754898-f7394600-9dc7-11ea-8278-2305363ed372.png))*";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "gitblame"
-    "Shows git blame information of a line *([screenshot](https://raw.githubusercontent.com/juliardi/lite-xl-gitblame/main/screenshot_1.png))*"
+    mkSimplePluginExternalRepo {
+      name = "gitblame";
+      description = "Shows git blame information of a line *([screenshot](https://raw.githubusercontent.com/juliardi/lite-xl-gitblame/main/screenshot_1.png))*";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "gitdiff_highlight"
-    "highlight changed lines from git *([screenshot](https://raw.githubusercontent.com/vincens2005/lite-xl-gitdiff-highlight/master/screenshot.png))*"
+    mkSimplePluginExternalRepo {
+      name = "gitdiff_highlight";
+      description = "highlight changed lines from git *([screenshot](https://raw.githubusercontent.com/vincens2005/lite-xl-gitdiff-highlight/master/screenshot.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "gitstatus"
-    "Displays git branch and insert/delete count in status bar *([screenshot](https://user-images.githubusercontent.com/3920290/81107223-bcea3080-8f0e-11ea-8fc7-d03173f42e33.png))*"
+    mkSimplePlugin {
+      name = "gitstatus";
+      description = "Displays git branch and insert/delete count in status bar *([screenshot](https://user-images.githubusercontent.com/3920290/81107223-bcea3080-8f0e-11ea-8fc7-d03173f42e33.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "gofmt"
-    "Auto-formats the current go file, adds the missing imports and the missing return cases"
+    mkSimplePlugin {
+      name = "gofmt";
+      description = "Auto-formats the current go file, adds the missing imports and the missing return cases";
+    }
   )
   # UNIMPLEMENTED
-  # (
-  #   mkSimplePlugin
-  #   "immersive-title"
-  #   "Dark (or even Mica!) title bar for Lite XL"
-  # )
+  # "immersive-title"
+  # "Dark (or even Mica!) title bar for Lite XL"
   (
-    mkSimplePlugin
-    "indent_convert"
-    "Convert between tabs and spaces indentation"
+    mkSimplePlugin {
+      name = "indent_convert";
+      description = "Convert between tabs and spaces indentation";
+    }
   )
   (
-    mkSimplePlugin
-    "indentguide"
-    "Adds indent guides *([screenshot](https://user-images.githubusercontent.com/3920290/79640716-f9860000-818a-11ea-9c3b-26d10dd0e0c0.png))*"
+    mkSimplePlugin {
+      name = "indentguide";
+      description = "Adds indent guides *([screenshot](https://user-images.githubusercontent.com/3920290/79640716-f9860000-818a-11ea-9c3b-26d10dd0e0c0.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "ipc"
-    "Adds inter-process communication support"
+    mkSimplePlugin {
+      name = "ipc";
+      description = "Adds inter-process communication support";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "kinc_projects"
-    "Adds [Kinc](https://github.com/Kode/Kinc) Project generation with basic build commands(depends on [`console`](https://github.com/franko/console))"
+    mkSimplePluginExternalRepo {
+      name = "kinc_projects";
+      description = "Adds [Kinc](https://github.com/Kode/Kinc) Project generation with basic build commands(depends on [`console`](https://github.com/franko/console))";
+      extraConfig = {programs.lite-xl.plugins.console = true;};
+    }
   )
   (
-    mkSimplePlugin
-    "language_angelscript"
-    "Syntax for the [Angelscript](https://www.angelcode.com/angelscript/) programming language"
+    mkSimplePlugin {
+      name = "language_angelscript";
+      description = "Syntax for the [Angelscript](https://www.angelcode.com/angelscript/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_assembly_x86"
-    "Syntax for Intel x86 assembly"
+    mkSimplePlugin {
+      name = "language_assembly_x86";
+      description = "Syntax for Intel x86 assembly";
+    }
   )
   (
-    mkPluginSingleFileInExternalRepo
-    "language_autohotkey"
-    "Syntax for the [AutoHotkey](https://www.autohotkey.com) programming language"
+    mkPluginSingleFileInExternalRepo {
+      name = "language_autohotkey";
+      description = "Syntax for the [AutoHotkey](https://www.autohotkey.com) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_batch"
-    "Syntax for Windows [Batch Files](https://en.wikipedia.org/wiki/Batch_file)"
+    mkSimplePlugin {
+      name = "language_batch";
+      description = "Syntax for Windows [Batch Files](https://en.wikipedia.org/wiki/Batch_file)";
+    }
   )
   (
-    mkSimplePlugin
-    "language_bib"
-    "Syntax for [BibTex](https://en.wikipedia.org/wiki/BibTeX) files"
+    mkSimplePlugin {
+      name = "language_bib";
+      description = "Syntax for [BibTex](https://en.wikipedia.org/wiki/BibTeX) files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_caddyfile"
-    "Syntax for the Caddyfile used on the [Caddy](https://caddyserver.com/) web server"
+    mkSimplePlugin {
+      name = "language_caddyfile";
+      description = "Syntax for the Caddyfile used on the [Caddy](https://caddyserver.com/) web server";
+    }
   )
   (
-    mkSimplePlugin
-    "language_cmake"
-    "Syntax for the CMake build system language"
+    mkSimplePlugin {
+      name = "language_cmake";
+      description = "Syntax for the CMake build system language";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "language_containerfile"
-    "Syntax for [Containerfile](https://github.com/containers/common/blob/main/docs/Containerfile.5.md)/[Dockerfile](https://docs.docker.com/engine/reference/builder/)"
+    mkSimplePluginExternalRepo {
+      name = "language_containerfile";
+      description = "Syntax for [Containerfile](https://github.com/containers/common/blob/main/docs/Containerfile.5.md)/[Dockerfile](https://docs.docker.com/engine/reference/builder/)";
+    }
   )
   (
-    mkPluginSingleFileInExternalRepo
-    "language_crystal"
-    "Syntax for the [Crystal](https://crystal-lang.org) programming language"
+    mkPluginSingleFileInExternalRepo {
+      name = "language_crystal";
+      description = "Syntax for the [Crystal](https://crystal-lang.org) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_csharp"
-    "Syntax for the [C#](http://csharp.net) programming language"
+    mkSimplePlugin {
+      name = "language_csharp";
+      description = "Syntax for the [C#](http://csharp.net) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_d"
-    "Syntax for the [D](https://dlang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_d";
+      description = "Syntax for the [D](https://dlang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_dart"
-    "Syntax for the [Dart](https://dart.dev/) programming languiage"
+    mkSimplePlugin {
+      name = "language_dart";
+      description = "Syntax for the [Dart](https://dart.dev/) programming languiage";
+    }
   )
   (
-    mkSimplePlugin
-    "language_diff"
-    "Syntax for diff and patch files"
+    mkSimplePlugin {
+      name = "language_diff";
+      description = "Syntax for diff and patch files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_elixir"
-    "Syntax for the [Elixir](https://elixir-lang.org) programming language"
+    mkSimplePlugin {
+      name = "language_elixir";
+      description = "Syntax for the [Elixir](https://elixir-lang.org) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_elm"
-    "Syntax for the [Elm](https://elm-lang.org) programming language"
+    mkSimplePlugin {
+      name = "language_elm";
+      description = "Syntax for the [Elm](https://elm-lang.org) programming language";
+    }
   )
   (
-    mkPluginSingleFileInExternalRepo
-    "language_env"
-    "Syntax for the [env](https://hexdocs.pm/dotenvy/dotenv-file-format.html) (dotenv) files"
+    mkPluginSingleFileInExternalRepo {
+      name = "language_env";
+      description = "Syntax for the [env](https://hexdocs.pm/dotenvy/dotenv-file-format.html) (dotenv) files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_erb"
-    "Syntax for the [ERB](https://github.com/ruby/erb) programming language. Also known as eRuby or Embedded Ruby."
+    mkSimplePlugin {
+      name = "language_erb";
+      description = "Syntax for the [ERB](https://github.com/ruby/erb) programming language. Also known as eRuby or Embedded Ruby.";
+    }
   )
   (
-    mkSimplePlugin
-    "language_fe"
-    "Syntax for the [fe](https://github.com/rxi/fe) programming language"
+    mkSimplePlugin {
+      name = "language_fe";
+      description = "Syntax for the [fe](https://github.com/rxi/fe) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_fennel"
-    "Syntax for the [fennel](https://fennel-lang.org) programming language"
+    mkSimplePlugin {
+      name = "language_fennel";
+      description = "Syntax for the [fennel](https://fennel-lang.org) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_fstab"
-    "Syntax for the [fstab](https://en.wikipedia.org/wiki/Fstab) config files"
+    mkSimplePlugin {
+      name = "language_fstab";
+      description = "Syntax for the [fstab](https://en.wikipedia.org/wiki/Fstab) config files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_gdscript"
-    "Syntax for the [Godot Engine](https://godotengine.org/)'s GDScript scripting language"
+    mkSimplePlugin {
+      name = "language_gdscript";
+      description = "Syntax for the [Godot Engine](https://godotengine.org/)'s GDScript scripting language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_glsl"
-    "Syntax for the [GLSL](https://www.khronos.org/registry/OpenGL/specs/gl/) programming language"
+    mkSimplePlugin {
+      name = "language_glsl";
+      description = "Syntax for the [GLSL](https://www.khronos.org/registry/OpenGL/specs/gl/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_gmi"
-    "Syntax for the [Gemtext](https://gemini.circumlunar.space/docs/gemtext.gmi) markup language"
+    mkSimplePlugin {
+      name = "language_gmi";
+      description = "Syntax for the [Gemtext](https://gemini.circumlunar.space/docs/gemtext.gmi) markup language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_go"
-    "Syntax for the [Go](https://golang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_go";
+      description = "Syntax for the [Go](https://golang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_hlsl"
-    "Syntax for the [HLSL](https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) programming language"
+    mkSimplePlugin {
+      name = "language_hlsl";
+      description = "Syntax for the [HLSL](https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_hs"
-    "Syntax for the [Haskell](https://www.haskell.org/) programming language"
+    mkSimplePlugin {
+      name = "language_hs";
+      description = "Syntax for the [Haskell](https://www.haskell.org/) programming language";
+    }
   )
   (
-    mkPluginSingleFileInExternalRepo
-    "language_ignore"
-    "Syntax for [.gitignore](https://git-scm.com/docs/gitignore), [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file) and some other `.*ignore` files"
+    mkPluginSingleFileInExternalRepo {
+      name = "language_ignore";
+      description = "Syntax for [.gitignore](https://git-scm.com/docs/gitignore), [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file) and some other `.*ignore` files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_ini"
-    "Syntax for [ini](https://en.wikipedia.org/wiki/INI_file) files"
+    mkSimplePlugin {
+      name = "language_ini";
+      description = "Syntax for [ini](https://en.wikipedia.org/wiki/INI_file) files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_java"
-    "Syntax for the [Java](https://en.wikipedia.org/wiki/Java_\(programming_language\)) programming language"
+    mkSimplePlugin {
+      name = "language_java";
+      description = "Syntax for the [Java](https://en.wikipedia.org/wiki/Java_\(programming_language\)) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_jiyu"
-    "Syntax for the [jiyu](https://github.com/machinamentum/jiyu) programming language"
+    mkSimplePlugin {
+      name = "language_jiyu";
+      description = "Syntax for the [jiyu](https://github.com/machinamentum/jiyu) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_jsx"
-    "Syntax for the [JSX](https://reactjs.org/docs/introducing-jsx.html) language for the React framework in JavaScript"
+    mkSimplePlugin {
+      name = "language_jsx";
+      description = "Syntax for the [JSX](https://reactjs.org/docs/introducing-jsx.html) language for the React framework in JavaScript";
+    }
   )
   (
-    mkSimplePlugin
-    "language_julia"
-    "Syntax for the [Julia](https://julialang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_julia";
+      description = "Syntax for the [Julia](https://julialang.org/) programming language";
+    }
   )
   rec {
     name = "language_ksy";
@@ -452,206 +522,245 @@ in [
     };
   }
   (
-    mkSimplePlugin
-    "language_liquid"
-    "Syntax for [Liquid](https://shopify.github.io/liquid/) templating language"
+    mkSimplePlugin {
+      name = "language_liquid";
+      description = "Syntax for [Liquid](https://shopify.github.io/liquid/) templating language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_lobster"
-    "Syntax for [Lobster](https://strlen.com/lobster/) programming language"
+    mkSimplePlugin {
+      name = "language_lobster";
+      description = "Syntax for [Lobster](https://strlen.com/lobster/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_make"
-    "Syntax for the Make build system language"
+    mkSimplePlugin {
+      name = "language_make";
+      description = "Syntax for the Make build system language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_meson"
-    "Syntax for the [Meson](https://mesonbuild.com) build system language"
+    mkSimplePlugin {
+      name = "language_meson";
+      description = "Syntax for the [Meson](https://mesonbuild.com) build system language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_miniscript"
-    "Syntax for the [MiniScript](https://miniscript.org) programming language"
+    mkSimplePlugin {
+      name = "language_miniscript";
+      description = "Syntax for the [MiniScript](https://miniscript.org) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_moon"
-    "Syntax for the [MoonScript](https://moonscript.org) scripting language"
+    mkSimplePlugin {
+      name = "language_moon";
+      description = "Syntax for the [MoonScript](https://moonscript.org) scripting language";
+    }
   )
   (
-    mkPluginSingleFileInExternalRepo
-    "language_nelua"
-    "Syntax for [Nelua](http://nelua.io/) programming"
+    mkPluginSingleFileInExternalRepo {
+      name = "language_nelua";
+      description = "Syntax for [Nelua](http://nelua.io/) programming";
+    }
   )
   (
-    mkSimplePlugin
-    "language_nginx"
-    "Syntax for [Nginx](https://www.nginx.com/) config files"
+    mkSimplePlugin {
+      name = "language_nginx";
+      description = "Syntax for [Nginx](https://www.nginx.com/) config files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_nim"
-    "Syntax for the [Nim](https://nim-lang.org) programming language"
+    mkSimplePlugin {
+      name = "language_nim";
+      description = "Syntax for the [Nim](https://nim-lang.org) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_objc"
-    "Syntax for the [Objective C](https://en.wikipedia.org/wiki/Objective-C) programming language"
+    mkSimplePlugin {
+      name = "language_objc";
+      description = "Syntax for the [Objective C](https://en.wikipedia.org/wiki/Objective-C) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_odin"
-    "Syntax for the [Odin](https://github.com/odin-lang/Odin) programming language"
+    mkSimplePlugin {
+      name = "language_odin";
+      description = "Syntax for the [Odin](https://github.com/odin-lang/Odin) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_perl"
-    "Syntax for the [Perl](https://perl.org) programming language"
+    mkSimplePlugin {
+      name = "language_perl";
+      description = "Syntax for the [Perl](https://perl.org) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_php"
-    "Syntax for the [PHP](https://php.net) programming language"
+    mkSimplePlugin {
+      name = "language_php";
+      description = "Syntax for the [PHP](https://php.net) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_pico8"
-    "Syntax for [Pico-8](https://www.lexaloffle.com/pico-8.php) cartridge files"
+    mkSimplePlugin {
+      name = "language_pico8";
+      description = "Syntax for [Pico-8](https://www.lexaloffle.com/pico-8.php) cartridge files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_pkgbuild"
-    "Syntax for [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) package description files"
+    mkSimplePlugin {
+      name = "language_pkgbuild";
+      description = "Syntax for [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) package description files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_po"
-    "Syntax for [PO](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html) translation files"
+    mkSimplePlugin {
+      name = "language_po";
+      description = "Syntax for [PO](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html) translation files";
+    }
   )
   (
-    mkPluginSingleFileInExternalRepo
-    "language_pony"
-    "Syntax for [Pony](https://www.ponylang.io/) programming language"
+    mkPluginSingleFileInExternalRepo {
+      name = "language_pony";
+      description = "Syntax for [Pony](https://www.ponylang.io/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_powershell"
-    "Syntax for [PowerShell](https://docs.microsoft.com/en-us/powershell) scripting language"
+    mkSimplePlugin {
+      name = "language_powershell";
+      description = "Syntax for [PowerShell](https://docs.microsoft.com/en-us/powershell) scripting language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_psql"
-    "Syntax for the postgresql database access language"
+    mkSimplePlugin {
+      name = "language_psql";
+      description = "Syntax for the postgresql database access language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_r"
-    "Syntax for [R](https://www.r-project.org/) scripting language"
+    mkSimplePlugin {
+      name = "language_r";
+      description = "Syntax for [R](https://www.r-project.org/) scripting language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_rescript"
-    "Syntax for the [ReScript](https://rescript-lang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_rescript";
+      description = "Syntax for the [ReScript](https://rescript-lang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_rivet"
-    "Syntax for the [Rivet](https://github.com/rivet-lang/rivet) programming language"
+    mkSimplePlugin {
+      name = "language_rivet";
+      description = "Syntax for the [Rivet](https://github.com/rivet-lang/rivet) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_ruby"
-    "Syntax for the [Ruby](https://www.ruby-lang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_ruby";
+      description = "Syntax for the [Ruby](https://www.ruby-lang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_rust"
-    "Syntax for the [Rust](https://rust-lang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_rust";
+      description = "Syntax for the [Rust](https://rust-lang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_sass"
-    "Syntax for the [Sass](https://sass-lang.com/) CSS preprocessor"
+    mkSimplePlugin {
+      name = "language_sass";
+      description = "Syntax for the [Sass](https://sass-lang.com/) CSS preprocessor";
+    }
   )
   (
-    mkSimplePlugin
-    "language_scala"
-    "Syntax for the [Scala](https://scala-lang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_scala";
+      description = "Syntax for the [Scala](https://scala-lang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_sh"
-    "Syntax for shell scripting language"
+    mkSimplePlugin {
+      name = "language_sh";
+      description = "Syntax for shell scripting language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_ssh_config"
-    "Syntax for ssh & sshd config files"
+    mkSimplePlugin {
+      name = "language_ssh_config";
+      description = "Syntax for ssh & sshd config files";
+    }
   )
   (
-    mkSimplePlugin
-    "language_tcl"
-    "Syntax for the [Tcl](https://www.tcl.tk/) programming language"
+    mkSimplePlugin {
+      name = "language_tcl";
+      description = "Syntax for the [Tcl](https://www.tcl.tk/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_teal"
-    "Syntax for the [Teal](https://github.com/teal-language/tl) programming language, a typed dialect of Lua."
+    mkSimplePlugin {
+      name = "language_teal";
+      description = "Syntax for the [Teal](https://github.com/teal-language/tl) programming language, a typed dialect of Lua.";
+    }
   )
   (
-    mkSimplePlugin
-    "language_tex"
-    "Syntax for the [LaTeX](https://www.latex-project.org/) typesetting language"
+    mkSimplePlugin {
+      name = "language_tex";
+      description = "Syntax for the [LaTeX](https://www.latex-project.org/) typesetting language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_toml"
-    "Syntax for the [TOML](https://toml.io/en/) configuration language"
+    mkSimplePlugin {
+      name = "language_toml";
+      description = "Syntax for the [TOML](https://toml.io/en/) configuration language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_ts"
-    "Syntax for the [TypeScript](https://www.typescriptlang.org/) programming language, a typed dialect of JavaScript."
+    mkSimplePlugin {
+      name = "language_ts";
+      description = "Syntax for the [TypeScript](https://www.typescriptlang.org/) programming language, a typed dialect of JavaScript.";
+    }
   )
   (
-    mkSimplePlugin
-    "language_tsx"
-    "Syntax for [TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) language"
+    mkSimplePlugin {
+      name = "language_tsx";
+      description = "Syntax for [TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_v"
-    "Syntax for the [V](https://vlang.io/) programming language"
+    mkSimplePlugin {
+      name = "language_v";
+      description = "Syntax for the [V](https://vlang.io/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_wren"
-    "Syntax for the [Wren](http://wren.io/) programming language"
+    mkSimplePlugin {
+      name = "language_wren";
+      description = "Syntax for the [Wren](http://wren.io/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_yaml"
-    "Syntax for [YAML](https://yaml.org/) serialization language"
+    mkSimplePlugin {
+      name = "language_yaml";
+      description = "Syntax for [YAML](https://yaml.org/) serialization language";
+    }
   )
   (
-    mkSimplePlugin
-    "language_zig"
-    "Syntax for the [Zig](https://ziglang.org/) programming language"
+    mkSimplePlugin {
+      name = "language_zig";
+      description = "Syntax for the [Zig](https://ziglang.org/) programming language";
+    }
   )
   (
-    mkSimplePlugin
-    "lfautoinsert"
-    "Automatically inserts indentation and closing bracket/text after newline"
+    mkSimplePlugin {
+      name = "lfautoinsert";
+      description = "Automatically inserts indentation and closing bracket/text after newline";
+    }
   )
   (
-    mkSimplePlugin
-    "linenumbers"
-    "The ability to change the display of the line number *([screenshot](https://user-images.githubusercontent.com/5556081/129493788-6a4cbd7a-9074-4133-bab7-110ed55f18f7.png))*"
+    mkSimplePlugin {
+      name = "linenumbers";
+      description = "The ability to change the display of the line number *([screenshot](https://user-images.githubusercontent.com/5556081/129493788-6a4cbd7a-9074-4133-bab7-110ed55f18f7.png))*";
+    }
   )
-
   (let
     linterconfigs = mapAttrsToList (name: packages: {inherit name packages;}) {
       "luacheck" = [pkgs.lua53Packages.luacheck];
@@ -744,15 +853,13 @@ in [
     ]);
   })
   # UNIMPLEMENTED
-  # (
-  #   mkSimplePlugin
-  #   "litepresence"
-  #   "Discord rich presence for Lite XL (display file editing in Discord)"
-  # )
+  # "litepresence"
+  # "Discord rich presence for Lite XL (display file editing in Discord)"
   (
-    mkPluginSingleFileInExternalRepo
-    "lorem"
-    "Generates Lorem Ipsum placeholder dummy text"
+    mkPluginSingleFileInExternalRepo {
+      name = "lorem";
+      description = "Generates Lorem Ipsum placeholder dummy text";
+    }
   )
   (let
     lspconfigs = mapAttrsToList (name: packages: {inherit name packages;}) {
@@ -836,73 +943,83 @@ in [
     };
   }
   (
-    mkSimplePlugin
-    "macmodkeys"
-    "Remaps mac modkeys `command/option` to `ctrl/alt`"
+    mkSimplePlugin {
+      name = "macmodkeys";
+      description = "Remaps mac modkeys `command/option` to `ctrl/alt`";
+    }
   )
   (
-    mkSimplePlugin
-    "markers"
-    "Add markers to docs and jump between them quickly *([screenshot](https://user-images.githubusercontent.com/3920290/82252149-5faaa200-9946-11ea-9199-bea2efb7ee23.png))*"
+    mkSimplePlugin {
+      name = "markers";
+      description = "Add markers to docs and jump between them quickly *([screenshot](https://user-images.githubusercontent.com/3920290/82252149-5faaa200-9946-11ea-9199-bea2efb7ee23.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "memoryusage"
-    "Show memory usage in the status view"
+    mkSimplePlugin {
+      name = "memoryusage";
+      description = "Show memory usage in the status view";
+    }
   )
   (
-    mkSimplePlugin
-    "minimap"
-    "Shows a minimap on the right-hand side of the docview. Taken from [@andsve](https://github.com/andsve/lite-plugins/tree/minimap-plugin), and improved upon."
+    mkSimplePlugin {
+      name = "minimap";
+      description = "Shows a minimap on the right-hand side of the docview. Taken from [@andsve](https://github.com/andsve/lite-plugins/tree/minimap-plugin), and improved upon.";
+    }
   )
   (
-    mkSimplePlugin
-    "motiontrail"
-    "Adds a motion-trail to the caret *([gif](https://user-images.githubusercontent.com/3920290/83256814-085ccb00-a1ab-11ea-9e35-e6633cbed1a9.gif))*"
+    mkSimplePlugin {
+      name = "motiontrail";
+      description = "Adds a motion-trail to the caret *([gif](https://user-images.githubusercontent.com/3920290/83256814-085ccb00-a1ab-11ea-9e35-e6633cbed1a9.gif))*";
+    }
   )
   (
-    mkSimplePlugin
-    "navigate"
-    "Allows moving back and forward between document positions, reducing the amount of scrolling"
-  )
-  rec {
-    name = "nonicons";
-    description = "File icons set for TreeView.";
-    options = pluginEnableOption name description;
-    config = mkIf cfg.plugins.nonicons {
-      home.file."${pluginDirectory}/nonicons.lua".source = "${lite-xl-plugins}/plugins/nonicons.lua";
-      home.file."${configDirectory}/fonts/nonicons.ttf".source = "${externalRepos.nonicons_font}/dist/nonicons.ttf";
-    };
-  }
-  (
-    mkSimplePlugin
-    "opacity"
-    "Change the opaqueness/transparency of `lite-xl` using shift+mousewheel or a command."
+    mkSimplePlugin {
+      name = "navigate";
+      description = "Allows moving back and forward between document positions, reducing the amount of scrolling";
+    }
   )
   (
-    mkSimplePlugin
-    "open_ext"
-    "Automatically prompts you if you tried to open a binary file in the editor"
+    mkSimplePlugin {
+      name = "nonicons";
+      description = "File icons set for TreeView.";
+      extraConfig = {home.file."${configDirectory}/fonts/nonicons.ttf".source = "${externalRepos.nonicons_font}/dist/nonicons.ttf";};
+    }
   )
   (
-    mkSimplePlugin
-    "openfilelocation"
-    "Opens the parent directory of the current file in the file manager"
+    mkSimplePlugin {
+      name = "opacity";
+      description = "Change the opaqueness/transparency of `lite-xl` using shift+mousewheel or a command.";
+    }
   )
   (
-    mkSimplePlugin
-    "openselected"
-    "Opens the selected filename or url"
+    mkSimplePlugin {
+      name = "open_ext";
+      description = "Automatically prompts you if you tried to open a binary file in the editor";
+    }
   )
   (
-    mkSimplePlugin
-    "pdfview"
-    "PDF preview for TeX files"
+    mkSimplePlugin {
+      name = "openfilelocation";
+      description = "Opens the parent directory of the current file in the file manager";
+    }
   )
   (
-    mkSimplePlugin
-    "primary_selection"
-    "Adds middle mouse click copy/paste (primary selection). To use this plugin, `xclip` must be installed."
+    mkSimplePlugin {
+      name = "openselected";
+      description = "Opens the selected filename or url";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "pdfview";
+      description = "PDF preview for TeX files";
+    }
+  )
+  (
+    mkSimplePlugin {
+      name = "primary_selection";
+      description = "Adds middle mouse click copy/paste (primary selection). To use this plugin, `xclip` must be installed.";
+    }
   )
   rec {
     name = "profiler";
@@ -914,89 +1031,107 @@ in [
     };
   }
   (
-    mkSimplePlugin
-    "rainbowparen"
-    "Show nesting of parentheses with rainbow colours"
+    mkSimplePlugin {
+      name = "rainbowparen";
+      description = "Show nesting of parentheses with rainbow colours";
+    }
   )
   (
-    mkSimplePlugin
-    "regexreplacepreview"
-    "Allows for you to write a regex and its replacement in one go, and live preview the results."
+    mkSimplePlugin {
+      name = "regexreplacepreview";
+      description = "Allows for you to write a regex and its replacement in one go, and live preview the results.";
+    }
   )
   (
-    mkSimplePlugin
-    "restoretabs"
-    "Keep a list of recently closed tabs, and restore the tab in order on cntrl+shift+t."
+    mkSimplePlugin {
+      name = "restoretabs";
+      description = "Keep a list of recently closed tabs, and restore the tab in order on cntrl+shift+t.";
+    }
   )
   (
-    mkSimplePlugin
-    "scalestatus"
-    "Displays current scale (zoom) in status view (depends on scale plugin)"
+    mkSimplePlugin {
+      name = "scalestatus";
+      description = "Displays current scale (zoom) in status view (depends on scale plugin)";
+    }
   )
   (
-    mkSimplePlugin
-    "select_colorscheme"
-    "Select a color theme, like VScode, Sublime Text.(plugin saves changes)"
+    mkSimplePlugin {
+      name = "select_colorscheme";
+      description = "Select a color theme, like VScode, Sublime Text.(plugin saves changes)";
+    }
   )
   (
-    mkSimplePlugin
-    "selectionhighlight"
-    "Highlights regions of code that match the current selection *([screenshot](https://user-images.githubusercontent.com/3920290/80710883-5f597c80-8ae7-11ea-97f0-76dfacc08439.png))*"
+    mkSimplePlugin {
+      name = "selectionhighlight";
+      description = "Highlights regions of code that match the current selection *([screenshot](https://user-images.githubusercontent.com/3920290/80710883-5f597c80-8ae7-11ea-97f0-76dfacc08439.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "settings"
-    "Provides a GUI to manage core and plugin settings, bindings and select color theme *([video](https://user-images.githubusercontent.com/1702572/169743674-ececae24-f6b7-4ff2-bfa2-c4762cd327d9.mp4))*. (depends on [`widget`](https://github.com/lite-xl/lite-xl-widgets))"
+    mkSimplePlugin {
+      name = "settings";
+      description = "Provides a GUI to manage core and plugin settings, bindings and select color theme *([video](https://user-images.githubusercontent.com/1702572/169743674-ececae24-f6b7-4ff2-bfa2-c4762cd327d9.mp4))*. (depends on [`widget`](https://github.com/lite-xl/lite-xl-widgets))";
+      extraConfig = {programs.lite-xl.plugins.widget = true;};
+    }
   )
   (
-    mkSimplePlugin
-    "smallclock"
-    "Displays the current time in the corner of the status view"
+    mkSimplePlugin {
+      name = "smallclock";
+      description = "Displays the current time in the corner of the status view";
+    }
   )
   (
-    mkSimplePlugin
-    "smoothcaret"
-    "Smooth caret animation *([gif](https://user-images.githubusercontent.com/20792268/139006049-a0ba6559-88cb-49a7-8077-4822445b4a1f.gif))*"
+    mkSimplePlugin {
+      name = "smoothcaret";
+      description = "Smooth caret animation *([gif](https://user-images.githubusercontent.com/20792268/139006049-a0ba6559-88cb-49a7-8077-4822445b4a1f.gif))*";
+    }
   )
   (
-    mkSimplePlugin
-    "sort"
-    "Sorts selected lines alphabetically"
+    mkSimplePlugin {
+      name = "sort";
+      description = "Sorts selected lines alphabetically";
+    }
   )
   (
-    mkSimplePlugin
-    "spellcheck"
-    "Underlines misspelt words *([screenshot](https://user-images.githubusercontent.com/3920290/79923973-9caa7400-842e-11ea-85d4-7a196a91ca50.png))* *-- note: on Windows a [`words.txt`](https://github.com/dwyl/english-words/blob/master/words.txt) dictionary file must be placed beside the exe*"
+    mkSimplePlugin {
+      name = "spellcheck";
+      description = "Underlines misspelt words *([screenshot](https://user-images.githubusercontent.com/3920290/79923973-9caa7400-842e-11ea-85d4-7a196a91ca50.png))* *-- note: on Windows a [`words.txt`](https://github.com/dwyl/english-words/blob/master/words.txt) dictionary file must be placed beside the exe*";
+    }
   )
   (
-    mkSimplePlugin
-    "statusclock"
-    "Displays the current date and time in the corner of the status view"
+    mkSimplePlugin {
+      name = "statusclock";
+      description = "Displays the current date and time in the corner of the status view";
+    }
   )
   (
-    mkSimplePlugin
-    "tabnumbers"
-    "Displays tab numbers from 1–9 next to their names \*([screenshot](https://user-images.githubusercontent.com/16415678/101285362-007a8500-37e5-11eb-869b-c10eb9d9d902.png))"
+    mkSimplePlugin {
+      name = "tabnumbers";
+      description = "Displays tab numbers from 1–9 next to their names \*([screenshot](https://user-images.githubusercontent.com/16415678/101285362-007a8500-37e5-11eb-869b-c10eb9d9d902.png))";
+    }
   )
   (
-    mkSimplePlugin
-    "texcompile"
-    "Compile Tex files into PDF"
+    mkSimplePlugin {
+      name = "texcompile";
+      description = "Compile Tex files into PDF";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "theme16"
-    "Theme manager with base16 themes"
+    mkSimplePluginExternalRepo {
+      name = "theme16";
+      description = "Theme manager with base16 themes";
+    }
   )
   (
-    mkSimplePlugin
-    "themeselect"
-    "Select a theme based on filename of active document"
+    mkSimplePlugin {
+      name = "themeselect";
+      description = "Select a theme based on filename of active document";
+    }
   )
   (
-    mkSimplePlugin
-    "titleize"
-    "Titleizes selected string (`hello world` => `Hello World`)"
+    mkSimplePlugin {
+      name = "titleize";
+      description = "Titleizes selected string (`hello world` => `Hello World`)";
+    }
   )
   rec {
     name = "todotreeview";
@@ -1007,39 +1142,46 @@ in [
     };
   }
   (
-    mkSimplePlugin
-    "togglesnakecamel"
-    "Toggles symbols between `snake_case` and `camelCase`"
+    mkSimplePlugin {
+      name = "togglesnakecamel";
+      description = "Toggles symbols between `snake_case` and `camelCase`";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "treeview-menu-extender"
-    "Extend Lite XL's treeview menu *([screenshot](https://raw.githubusercontent.com/juliardi/lite-xl-treeview-menu-extender/main/screenshot.png))*"
+    mkSimplePluginExternalRepo {
+      name = "treeview-menu-extender";
+      description = "Extend Lite XL's treeview menu *([screenshot](https://raw.githubusercontent.com/juliardi/lite-xl-treeview-menu-extender/main/screenshot.png))*";
+    }
   )
   (
-    mkSimplePlugin
-    "typingspeed"
-    "Displays your current typing speed in characters and words per minute in the status bar"
+    mkSimplePlugin {
+      name = "typingspeed";
+      description = "Displays your current typing speed in characters and words per minute in the status bar";
+    }
   )
   (
-    mkSimplePlugin
-    "unboundedscroll"
-    "Allows scrolling outside the bounds of a document"
+    mkSimplePlugin {
+      name = "unboundedscroll";
+      description = "Allows scrolling outside the bounds of a document";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "updatechecker"
-    "Automatically checks for updates and notifies you"
+    mkSimplePluginExternalRepo {
+      name = "updatechecker";
+      description = "Automatically checks for updates and notifies you";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "vibe"
-    "VI(vim?) bindings with a hint of DOOM Emacs, for lite-xl"
+    mkSimplePluginExternalRepo {
+      name = "vibe";
+      description = "VI(vim?) bindings with a hint of DOOM Emacs, for lite-xl";
+    }
   )
   (
-    mkSimplePluginExternalRepo
-    "visu"
-    "Audio visualizer for Lite XL"
+    mkSimplePluginExternalRepo {
+      name = "visu";
+      description = "Audio visualizer for Lite XL";
+    }
   )
   rec {
     name = "widget";
@@ -1053,8 +1195,9 @@ in [
     };
   }
   (
-    mkSimplePlugin
-    "wordcount"
-    "Adds in a word count to the statusview."
+    mkSimplePlugin {
+      name = "wordcount";
+      description = "Adds in a word count to the statusview.";
+    }
   )
 ]
