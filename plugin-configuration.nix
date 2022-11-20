@@ -883,6 +883,7 @@ in [
       "intelephense" = [pkgs.nodePackages.intelephense];
       "jsonls" = [pkgs.nodePackages.vscode-json-languageserver];
       "kotlin_language_server" = [pkgs.kotlin-language-server];
+      "nillsp" = []; # Not found in nixpkgs
       "nimlsp" = [pkgs.nimlsp];
       "ocaml_lsp" = [pkgs.ocamlPackages.ocaml-lsp];
       "pyls" = []; # Not found in nixpkgs
@@ -922,6 +923,7 @@ in [
       (mkIf cfg.lsp.pyls {warnings = ["pyls was not found in nixpkgs you have install it on your own!"];})
       (mkIf cfg.lsp.sqlls {warnings = ["sqlls was not found in nixpkgs you have install it on your own!"];})
       (mkIf cfg.lsp.vls {warnings = ["vls was not found in nixpkgs you have install it on your own!"];})
+      (mkIf cfg.lsp.nillsp {warnings = ["nil was not found in nixpkgs you have install it on your own!"];})
 
       (mkIf (any (c: cfg.lsp.${c.name}) lspconfigs) {
         programs.lite-xl.hm-module-plugin-before = ''local lspconfig = require "plugins.lsp.config"'';
