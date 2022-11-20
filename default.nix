@@ -39,7 +39,7 @@ with lib; let
       type = types.lines;
       default = "";
     };
-    
+
     options.programs.lite-xl.hm-module-plugin-after = mkOption {
       type = types.lines;
       default = "";
@@ -60,7 +60,7 @@ in
 
           -- hm-module-plugin
           ${cfg.hm-module-plugin}
-          
+
           -- hm-module-plugin-after
           ${cfg.hm-module-plugin-after}
         '';
