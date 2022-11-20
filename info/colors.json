@@ -1,0 +1,118 @@
+[
+  {
+    "name": "betelgeuse",
+    "path": "colors/betelgeuse.lua"
+  },
+  {
+    "name": "cold-lime",
+    "path": "colors/cold_lime.lua"
+  },
+  {
+    "name": "c-0mfy",
+    "path": "colors/c0mfy.lua"
+  },
+  {
+    "name": "dracula",
+    "path": "colors/dracula.lua"
+  },
+  {
+    "name": "duorand",
+    "path": "colors/duorand.lua"
+  },
+  {
+    "name": "duotone",
+    "path": "colors/duotone.lua"
+  },
+  {
+    "name": "github-dark",
+    "path": "colors/github_dark.lua"
+  },
+  {
+    "name": "github-dark-dimmed",
+    "path": "colors/github-dark-dimmed.lua"
+  },
+  {
+    "name": "gruvbox-dark",
+    "path": "colors/gruvbox_dark.lua"
+  },
+  {
+    "name": "jellybeans",
+    "path": "colors/jellybeans.lua"
+  },
+  {
+    "name": "liqube",
+    "path": "colors/liqube.lua"
+  },
+  {
+    "name": "mariana",
+    "path": "colors/mariana.lua"
+  },
+  {
+    "name": "monodark",
+    "path": "colors/monodark.lua"
+  },
+  {
+    "name": "monokai",
+    "path": "colors/monokai.lua"
+  },
+  {
+    "name": "monokai-pro-classic",
+    "path": "colors/monokai-pro-classic.lua"
+  },
+  {
+    "name": "nord",
+    "path": "colors/nord.lua"
+  },
+  {
+    "name": "onedark",
+    "path": "colors/onedark.lua"
+  },
+  {
+    "name": "only-dark",
+    "path": "colors/only_dark.lua"
+  },
+  {
+    "name": "plasma",
+    "path": "colors/plasma.lua"
+  },
+  {
+    "name": "synthwave",
+    "path": "colors/synthwave.lua"
+  },
+  {
+    "name": "tokyo-night",
+    "path": "colors/tokyo-night.lua"
+  },
+  {
+    "name": "vscode-dark",
+    "path": "colors/vscode-dark.lua"
+  },
+  {
+    "name": "winter",
+    "path": "colors/winter.lua"
+  },
+  {
+    "name": "zenburn",
+    "path": "colors/zenburn.lua"
+  },
+  {
+    "name": "github",
+    "path": "colors/github.lua"
+  },
+  {
+    "name": "gruvbox-light",
+    "path": "colors/gruvbox_light.lua"
+  },
+  {
+    "name": "moe",
+    "path": "colors/moe.lua"
+  },
+  {
+    "name": "solarized-light",
+    "path": "colors/solarized_light.lua"
+  },
+  {
+    "name": "solarobj",
+    "path": "colors/solarobj.lua"
+  }
+]

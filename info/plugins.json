@@ -1,0 +1,944 @@
+[
+  {
+    "name": "align_carets",
+    "path": "plugins/align_carets.lua",
+    "description": "Align multiple carets and selections *([clip](https://user-images.githubusercontent.com/2798487/165631951-532f8d24-d596-4dd0-9d21-ff53c71ed32f.mp4))*",
+    "type": "local"
+  },
+  {
+    "name": "autoinsert",
+    "path": "plugins/autoinsert.lua",
+    "description": "Automatically inserts closing brackets and quotes. Also allows selected text to be wrapped with brackets or quotes.",
+    "type": "local"
+  },
+  {
+    "name": "autosave",
+    "path": "plugins/autosave.lua",
+    "description": "Automatically saves files when they are changed",
+    "type": "local"
+  },
+  {
+    "name": "autosaveonfocuslost",
+    "path": "plugins/autosaveonfocuslost.lua",
+    "description": "Automatically saves files that were changed when the main window loses focus by switching to another application",
+    "type": "local"
+  },
+  {
+    "name": "autowrap",
+    "path": "plugins/autowrap.lua",
+    "description": "Automatically hardwraps lines when typing",
+    "type": "local"
+  },
+  {
+    "name": "bigclock",
+    "path": "plugins/bigclock.lua",
+    "description": "Shows the current time and date in a view with large text *([screenshot](https://user-images.githubusercontent.com/3920290/82752891-3318df00-9db9-11ea-803f-261d80d5cf53.png))*",
+    "type": "local"
+  },
+  {
+    "name": "black",
+    "path": "https://git.sr.ht/\\~tmpod/black-lite",
+    "description": "Integrates the [black](https://github.com/psf/black) Python formatter with lite",
+    "type": "unknown"
+  },
+  {
+    "name": "bracketmatch",
+    "path": "plugins/bracketmatch.lua",
+    "description": "Underlines matching pair for bracket under the caret *([screenshot](https://user-images.githubusercontent.com/3920290/80132745-0c863f00-8594-11ea-8875-c455c6fd7eae.png))*",
+    "type": "local"
+  },
+  {
+    "name": "centerdoc",
+    "path": "plugins/centerdoc.lua",
+    "description": "Centers document's content on the screen and adds zen mode support *([screenshot](https://user-images.githubusercontent.com/3920290/82127896-bf6e4500-97ae-11ea-97fc-ba9a552bc9a4.png))*",
+    "type": "local"
+  },
+  {
+    "name": "colorpreview",
+    "path": "plugins/colorpreview.lua",
+    "description": "Underlays color values (eg. `#ff00ff` or `rgb(255, 0, 255)`) with their resultant color. *([screenshot](https://user-images.githubusercontent.com/3920290/80743752-731bd780-8b15-11ea-97d3-847db927c5dc.png))*",
+    "type": "local"
+  },
+  {
+    "name": "console",
+    "path": "https://github.com/franko/console",
+    "description": "A console for running external commands and capturing their output *([gif](https://user-images.githubusercontent.com/3920290/81343656-49325a00-90ad-11ea-8647-ff39d8f1d730.gif))*",
+    "type": "github"
+  },
+  {
+    "name": "contextmenu",
+    "path": "https://github.com/takase1121/lite-contextmenu",
+    "description": "Simple context menu *([screenshot](https://github.com/takase1121/lite-contextmenu/blob/master/assets/screenshot.jpg?raw=true))*",
+    "type": "github"
+  },
+  {
+    "name": "copyfilelocation",
+    "path": "plugins/copyfilelocation.lua",
+    "description": "Copy file location to clipboard",
+    "type": "local"
+  },
+  {
+    "name": "datetimestamps",
+    "path": "plugins/datetimestamps.lua",
+    "description": "Insert date-, time- and date-time-stamps",
+    "type": "local"
+  },
+  {
+    "name": "discord-presence",
+    "path": "https://github.com/vincens2005/lite-xl-discord",
+    "description": "Adds the current workspace and file to your Discord Rich Presence",
+    "type": "github"
+  },
+  {
+    "name": "dragdropselected",
+    "path": "plugins/dragdropselected.lua",
+    "description": "Provides basic drag and drop of selected text (in same document)",
+    "type": "local"
+  },
+  {
+    "name": "eofnewline",
+    "path": "https://github.com/bokunodev/lite_modules/blob/master/plugins/eofnewline-xl.lua",
+    "description": "Make sure the file ends with one blank line.",
+    "type": "github"
+  },
+  {
+    "name": "ephemeral_tabs",
+    "path": "plugins/ephemeral_tabs.lua",
+    "description": "Preview tabs. Opening a doc will replace the contents of the preview tab. Marks tabs as non-preview on any change or tab double clicking.",
+    "type": "local"
+  },
+  {
+    "name": "equationgrapher",
+    "path": "https://github.com/ThaCuber/equationgrapher",
+    "description": "Graphs y=x equations.",
+    "type": "github"
+  },
+  {
+    "name": "eval",
+    "path": "plugins/eval.lua",
+    "description": "Replaces selected Lua code with its evaluated result",
+    "type": "local"
+  },
+  {
+    "name": "exec",
+    "path": "plugins/exec.lua",
+    "description": "Runs selected text through shell command and replaces with result",
+    "type": "local"
+  },
+  {
+    "name": "extend_selection_line",
+    "path": "plugins/extend_selection_line.lua",
+    "description": "When a selection crosses multiple lines, it is drawn to the end of the screen *([screenshot](https://user-images.githubusercontent.com/2798487/140995616-89a20b55-5917-4df8-8a7c-d7c53732fa8b.png))*",
+    "type": "local"
+  },
+  {
+    "name": "exterm",
+    "path": "https://github.com/ShadiestGoat/lite-xl-exterm",
+    "description": "Allows to open an external console in current project directory",
+    "type": "github"
+  },
+  {
+    "name": "fallbackfonts",
+    "path": "https://github.com/takase1121/lite-fallback-fonts",
+    "description": "Adds support for fallback fonts *([gif](https://raw.githubusercontent.com/takase1121/lite-fallback-fonts/master/assets/Iw18fI57J0.gif))*",
+    "type": "github"
+  },
+  {
+    "name": "fontconfig",
+    "path": "plugins/fontconfig.lua",
+    "description": "Allows users to load fonts with [fontconfig](https://www.freedesktop.org/software/fontconfig/fontconfig-user.html).",
+    "type": "local"
+  },
+  {
+    "name": "force_syntax",
+    "path": "plugins/force_syntax.lua",
+    "description": "Change the syntax used for a file.",
+    "type": "local"
+  },
+  {
+    "name": "formatter",
+    "path": "https://github.com/vincens2005/lite-formatters",
+    "description": "formatters for various languages",
+    "type": "github"
+  },
+  {
+    "name": "ghmarkdown",
+    "path": "plugins/ghmarkdown.lua",
+    "description": "Opens a preview of the current markdown file in a browser window *([screenshot](https://user-images.githubusercontent.com/3920290/82754898-f7394600-9dc7-11ea-8278-2305363ed372.png))*",
+    "type": "local"
+  },
+  {
+    "name": "gitblame",
+    "path": "https://github.com/juliardi/lite-xl-gitblame",
+    "description": "Shows \"git blame\" information of a line *([screenshot](https://raw.githubusercontent.com/juliardi/lite-xl-gitblame/main/screenshot_1.png))*",
+    "type": "github"
+  },
+  {
+    "name": "gitdiff_highlight",
+    "path": "https://github.com/vincens2005/lite-xl-gitdiff-highlight",
+    "description": "highlight changed lines from git *([screenshot](https://raw.githubusercontent.com/vincens2005/lite-xl-gitdiff-highlight/master/screenshot.png))*",
+    "type": "github"
+  },
+  {
+    "name": "gitstatus",
+    "path": "plugins/gitstatus.lua",
+    "description": "Displays git branch and insert/delete count in status bar *([screenshot](https://user-images.githubusercontent.com/3920290/81107223-bcea3080-8f0e-11ea-8fc7-d03173f42e33.png))*",
+    "type": "local"
+  },
+  {
+    "name": "gofmt",
+    "path": "plugins/gofmt.lua",
+    "description": "Auto-formats the current go file, adds the missing imports and the missing return cases",
+    "type": "local"
+  },
+  {
+    "name": "immersive-title",
+    "path": "https://github.com/takase1121/lite-xl-immersive-title",
+    "description": "Dark (or even Mica!) title bar for Lite XL",
+    "type": "github"
+  },
+  {
+    "name": "indent_convert",
+    "path": "plugins/indent_convert.lua",
+    "description": "Convert between tabs and spaces indentation",
+    "type": "local"
+  },
+  {
+    "name": "indentguide",
+    "path": "plugins/indentguide.lua",
+    "description": "Adds indent guides *([screenshot](https://user-images.githubusercontent.com/3920290/79640716-f9860000-818a-11ea-9c3b-26d10dd0e0c0.png))*",
+    "type": "local"
+  },
+  {
+    "name": "ipc",
+    "path": "plugins/ipc.lua",
+    "description": "Adds inter-process communication support",
+    "type": "local"
+  },
+  {
+    "name": "kinc_projects",
+    "path": "https://github.com/Kode-Community/kinc_plugin",
+    "description": "Adds [Kinc](https://github.com/Kode/Kinc) Project generation with basic build commands(depends on [`console`](https://github.com/franko/console))",
+    "type": "github"
+  },
+  {
+    "name": "language_angelscript",
+    "path": "plugins/language_angelscript.lua",
+    "description": "Syntax for the [Angelscript](https://www.angelcode.com/angelscript/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_assembly_x86",
+    "path": "plugins/language_assembly_x86.lua",
+    "description": "Syntax for Intel x86 assembly",
+    "type": "local"
+  },
+  {
+    "name": "language_autohotkey",
+    "path": "https://github.com/devPnal/lite-plugin-autohotkey",
+    "description": "Syntax for the [AutoHotkey](https://www.autohotkey.com) programming language",
+    "type": "github"
+  },
+  {
+    "name": "language_batch",
+    "path": "plugins/language_batch.lua",
+    "description": "Syntax for Windows [Batch Files](https://en.wikipedia.org/wiki/Batch_file)",
+    "type": "local"
+  },
+  {
+    "name": "language_bib",
+    "path": "plugins/language_bib.lua",
+    "description": "Syntax for [BibTex](https://en.wikipedia.org/wiki/BibTeX) files",
+    "type": "local"
+  },
+  {
+    "name": "language_caddyfile",
+    "path": "plugins/language_caddyfile.lua",
+    "description": "Syntax for the Caddyfile used on the [Caddy](https://caddyserver.com/) web server",
+    "type": "local"
+  },
+  {
+    "name": "language_cmake",
+    "path": "plugins/language_cmake.lua",
+    "description": "Syntax for the CMake build system language",
+    "type": "local"
+  },
+  {
+    "name": "language_containerfile",
+    "path": "https://github.com/FilBot3/lite-xl-language-containerfile",
+    "description": "Syntax for [Containerfile](https://github.com/containers/common/blob/main/docs/Containerfile.5.md)/[Dockerfile](https://docs.docker.com/engine/reference/builder/)",
+    "type": "github"
+  },
+  {
+    "name": "language_crystal",
+    "path": "https://github.com/Tamnac/lite-plugin-crystal",
+    "description": "Syntax for the [Crystal](https://crystal-lang.org) programming language",
+    "type": "github"
+  },
+  {
+    "name": "language_csharp",
+    "path": "plugins/language_csharp.lua",
+    "description": "Syntax for the [C#](http://csharp.net) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_d",
+    "path": "plugins/language_d.lua",
+    "description": "Syntax for the [D](https://dlang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_dart",
+    "path": "plugins/language_dart.lua",
+    "description": "Syntax for the [Dart](https://dart.dev/) programming languiage",
+    "type": "local"
+  },
+  {
+    "name": "language_diff",
+    "path": "plugins/language_diff.lua",
+    "description": "Syntax for diff and patch files",
+    "type": "local"
+  },
+  {
+    "name": "language_elixir",
+    "path": "plugins/language_elixir.lua",
+    "description": "Syntax for the [Elixir](https://elixir-lang.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_elm",
+    "path": "plugins/language_elm.lua",
+    "description": "Syntax for the [Elm](https://elm-lang.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_env",
+    "path": "https://github.com/anthonyaxenov/lite-xl-env-syntax",
+    "description": "Syntax for the [env](https://hexdocs.pm/dotenvy/dotenv-file-format.html) (dotenv) files",
+    "type": "github"
+  },
+  {
+    "name": "language_erb",
+    "path": "plugins/language_erb.lua",
+    "description": "Syntax for the [ERB](https://github.com/ruby/erb) programming language. Also known as eRuby or Embedded Ruby.",
+    "type": "local"
+  },
+  {
+    "name": "language_fe",
+    "path": "plugins/language_fe.lua",
+    "description": "Syntax for the [fe](https://github.com/rxi/fe) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_fennel",
+    "path": "plugins/language_fennel.lua",
+    "description": "Syntax for the [fennel](https://fennel-lang.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_fstab",
+    "path": "plugins/language_fstab.lua",
+    "description": "Syntax for the [fstab](https://en.wikipedia.org/wiki/Fstab) config files",
+    "type": "local"
+  },
+  {
+    "name": "language_gdscript",
+    "path": "plugins/language_gdscript.lua",
+    "description": "Syntax for the [Godot Engine](https://godotengine.org/)'s GDScript scripting language",
+    "type": "local"
+  },
+  {
+    "name": "language_glsl",
+    "path": "plugins/language_glsl.lua",
+    "description": "Syntax for the [GLSL](https://www.khronos.org/registry/OpenGL/specs/gl/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_gmi",
+    "path": "plugins/language_gmi.lua",
+    "description": "Syntax for the [Gemtext](https://gemini.circumlunar.space/docs/gemtext.gmi) markup language",
+    "type": "local"
+  },
+  {
+    "name": "language_go",
+    "path": "plugins/language_go.lua",
+    "description": "Syntax for the [Go](https://golang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_hlsl",
+    "path": "plugins/language_hlsl.lua",
+    "description": "Syntax for the [HLSL](https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_hs",
+    "path": "plugins/language_hs.lua",
+    "description": "Syntax for the [Haskell](https://www.haskell.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_ignore",
+    "path": "https://github.com/anthonyaxenov/lite-xl-ignore-syntax",
+    "description": "Syntax for [.gitignore](https://git-scm.com/docs/gitignore), [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file) and some other `.*ignore` files",
+    "type": "github"
+  },
+  {
+    "name": "language_ini",
+    "path": "plugins/language_ini.lua",
+    "description": "Syntax for [ini](https://en.wikipedia.org/wiki/INI_file) files",
+    "type": "local"
+  },
+  {
+    "name": "language_java",
+    "path": "plugins/language_java.lua",
+    "description": "Syntax for the [Java](https://en.wikipedia.org/wiki/Java_\\(programming_language\\)) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_jiyu",
+    "path": "plugins/language_jiyu.lua",
+    "description": "Syntax for the [jiyu](https://github.com/machinamentum/jiyu) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_jsx",
+    "path": "plugins/language_jsx.lua",
+    "description": "Syntax for the [JSX](https://reactjs.org/docs/introducing-jsx.html) language for the React framework in JavaScript",
+    "type": "local"
+  },
+  {
+    "name": "language_julia",
+    "path": "plugins/language_julia.lua",
+    "description": "Syntax for the [Julia](https://julialang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_ksy",
+    "path": "https://raw.githubusercontent.com/whiteh0le/lite-plugins/main/plugins/language_ksy.lua",
+    "description": "Syntax for [Kaitai](http://kaitai.io/) struct files",
+    "type": "unknown"
+  },
+  {
+    "name": "language_liquid",
+    "path": "plugins/language_liquid.lua",
+    "description": "Syntax for [Liquid](https://shopify.github.io/liquid/) templating language",
+    "type": "local"
+  },
+  {
+    "name": "language_lobster",
+    "path": "plugins/language_lobster.lua",
+    "description": "Syntax for [Lobster](https://strlen.com/lobster/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_make",
+    "path": "plugins/language_make.lua",
+    "description": "Syntax for the Make build system language",
+    "type": "local"
+  },
+  {
+    "name": "language_meson",
+    "path": "plugins/language_meson.lua",
+    "description": "Syntax for the [Meson](https://mesonbuild.com) build system language",
+    "type": "local"
+  },
+  {
+    "name": "language_miniscript",
+    "path": "plugins/language_miniscript.lua",
+    "description": "Syntax for the [MiniScript](https://miniscript.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_moon",
+    "path": "plugins/language_moon.lua",
+    "description": "Syntax for the [MoonScript](https://moonscript.org) scripting language",
+    "type": "local"
+  },
+  {
+    "name": "language_nelua",
+    "path": "https://github.com/AKDev21/nelua-lite-xl",
+    "description": "Syntax for [Nelua](http://nelua.io/) programming",
+    "type": "github"
+  },
+  {
+    "name": "language_nginx",
+    "path": "plugins/language_nginx.lua",
+    "description": "Syntax for [Nginx](https://www.nginx.com/) config files",
+    "type": "local"
+  },
+  {
+    "name": "language_nim",
+    "path": "plugins/language_nim.lua",
+    "description": "Syntax for the [Nim](https://nim-lang.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_objc",
+    "path": "plugins/language_objc.lua",
+    "description": "Syntax for the [Objective C](https://en.wikipedia.org/wiki/Objective-C) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_odin",
+    "path": "plugins/language_odin.lua",
+    "description": "Syntax for the [Odin](https://github.com/odin-lang/Odin) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_perl",
+    "path": "plugins/language_perl.lua",
+    "description": "Syntax for the [Perl](https://perl.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_php",
+    "path": "plugins/language_php.lua",
+    "description": "Syntax for the [PHP](https://php.net) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_pico8",
+    "path": "plugins/language_pico8.lua",
+    "description": "Syntax for [Pico-8](https://www.lexaloffle.com/pico-8.php) cartridge files",
+    "type": "local"
+  },
+  {
+    "name": "language_pkgbuild",
+    "path": "plugins/language_pkgbuild.lua",
+    "description": "Syntax for [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) package description files",
+    "type": "local"
+  },
+  {
+    "name": "language_po",
+    "path": "plugins/language_po.lua",
+    "description": "Syntax for [PO](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html) translation files",
+    "type": "local"
+  },
+  {
+    "name": "language_pony",
+    "path": "https://github.com/MrAnyx/lite-plugin-pony",
+    "description": "Syntax for [Pony](https://www.ponylang.io/) programming language",
+    "type": "github"
+  },
+  {
+    "name": "language_powershell",
+    "path": "plugins/language_powershell.lua",
+    "description": "Syntax for [PowerShell](https://docs.microsoft.com/en-us/powershell) scripting language",
+    "type": "local"
+  },
+  {
+    "name": "language_psql",
+    "path": "plugins/language_psql.lua",
+    "description": "Syntax for the postgresql database access language",
+    "type": "local"
+  },
+  {
+    "name": "language_r",
+    "path": "plugins/language_R.lua",
+    "description": "Syntax for [R](https://www.r-project.org/) scripting language",
+    "type": "local"
+  },
+  {
+    "name": "language_rescript",
+    "path": "plugins/language_rescript.lua",
+    "description": "Syntax for the [ReScript](https://rescript-lang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_rivet",
+    "path": "plugins/language_rivet.lua",
+    "description": "Syntax for the [Rivet](https://github.com/rivet-lang/rivet) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_ruby",
+    "path": "plugins/language_ruby.lua",
+    "description": "Syntax for the [Ruby](https://www.ruby-lang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_rust",
+    "path": "plugins/language_rust.lua",
+    "description": "Syntax for the [Rust](https://rust-lang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_sass",
+    "path": "plugins/language_sass.lua",
+    "description": "Syntax for the [Sass](https://sass-lang.com/) CSS preprocessor",
+    "type": "local"
+  },
+  {
+    "name": "language_scala",
+    "path": "plugins/language_scala.lua",
+    "description": "Syntax for the [Scala](https://scala-lang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_sh",
+    "path": "plugins/language_sh.lua",
+    "description": "Syntax for shell scripting language",
+    "type": "local"
+  },
+  {
+    "name": "language_ssh_config",
+    "path": "plugins/language_ssh_config.lua",
+    "description": "Syntax for ssh & sshd config files",
+    "type": "local"
+  },
+  {
+    "name": "language_tcl",
+    "path": "plugins/language_tcl.lua",
+    "description": "Syntax for the [Tcl](https://www.tcl.tk/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_teal",
+    "path": "plugins/language_teal.lua",
+    "description": "Syntax for the [Teal](https://github.com/teal-language/tl) programming language, a typed dialect of Lua.",
+    "type": "local"
+  },
+  {
+    "name": "language_tex",
+    "path": "plugins/language_tex.lua",
+    "description": "Syntax for the [LaTeX](https://www.latex-project.org/) typesetting language",
+    "type": "local"
+  },
+  {
+    "name": "language_toml",
+    "path": "plugins/language_toml.lua",
+    "description": "Syntax for the [TOML](https://toml.io/en/) configuration language",
+    "type": "local"
+  },
+  {
+    "name": "language_ts",
+    "path": "plugins/language_ts.lua",
+    "description": "Syntax for the [TypeScript](https://www.typescriptlang.org/) programming language, a typed dialect of JavaScript.",
+    "type": "local"
+  },
+  {
+    "name": "language_tsx",
+    "path": "plugins/language_tsx.lua",
+    "description": "Syntax for [TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) language",
+    "type": "local"
+  },
+  {
+    "name": "language_v",
+    "path": "plugins/language_v.lua",
+    "description": "Syntax for the [V](https://vlang.io/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_wren",
+    "path": "plugins/language_wren.lua",
+    "description": "Syntax for the [Wren](http://wren.io/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_yaml",
+    "path": "plugins/language_yaml.lua",
+    "description": "Syntax for [YAML](https://yaml.org/) serialization language",
+    "type": "local"
+  },
+  {
+    "name": "language_zig",
+    "path": "plugins/language_zig.lua",
+    "description": "Syntax for the [Zig](https://ziglang.org/) programming language",
+    "type": "local"
+  },
+  {
+    "name": "lfautoinsert",
+    "path": "plugins/lfautoinsert.lua",
+    "description": "Automatically inserts indentation and closing bracket/text after newline",
+    "type": "local"
+  },
+  {
+    "name": "linenumbers",
+    "path": "plugins/linenumbers.lua",
+    "description": "The ability to change the display of the line number *([screenshot](https://user-images.githubusercontent.com/5556081/129493788-6a4cbd7a-9074-4133-bab7-110ed55f18f7.png))*",
+    "type": "local"
+  },
+  {
+    "name": "lintplus",
+    "path": "https://github.com/liquid600pgm/lintplus",
+    "description": "Advanced linter with ErrorLens-like error reporting. Compatible with linters made for `linter` *([screenshot](https://raw.githubusercontent.com/liquid600pgm/lintplus/master/screenshots/1.png))*",
+    "type": "github"
+  },
+  {
+    "name": "linter",
+    "path": "https://github.com/drmargarido/linters",
+    "description": "Linters for multiple languages",
+    "type": "github"
+  },
+  {
+    "name": "litepresence",
+    "path": "https://github.com/TorchedSammy/Litepresence",
+    "description": "Discord rich presence for Lite XL (display file editing in Discord)",
+    "type": "github"
+  },
+  {
+    "name": "lorem",
+    "path": "https://github.com/sheetcoder/lorem",
+    "description": "Generates Lorem Ipsum placeholder dummy text",
+    "type": "github"
+  },
+  {
+    "name": "lsp",
+    "path": "https://github.com/lite-xl/lite-xl-lsp",
+    "description": "Provides code completion (also known as IntelliSense) using the Language Server Protocol",
+    "type": "github"
+  },
+  {
+    "name": "lspkind",
+    "path": "https://github.com/TorchedSammy/lite-xl-lspkind",
+    "description": "Completion menu kind/type icons for Lite XL LSP",
+    "type": "github"
+  },
+  {
+    "name": "macmodkeys",
+    "path": "plugins/macmodkeys.lua",
+    "description": "Remaps mac modkeys `command/option` to `ctrl/alt`",
+    "type": "local"
+  },
+  {
+    "name": "markers",
+    "path": "plugins/markers.lua",
+    "description": "Add markers to docs and jump between them quickly *([screenshot](https://user-images.githubusercontent.com/3920290/82252149-5faaa200-9946-11ea-9199-bea2efb7ee23.png))*",
+    "type": "local"
+  },
+  {
+    "name": "memoryusage",
+    "path": "plugins/memoryusage.lua",
+    "description": "Show memory usage in the status view",
+    "type": "local"
+  },
+  {
+    "name": "minimap",
+    "path": "plugins/minimap.lua",
+    "description": "Shows a minimap on the right-hand side of the docview. Taken from [@andsve](https://github.com/andsve/lite-plugins/tree/minimap-plugin), and improved upon.",
+    "type": "local"
+  },
+  {
+    "name": "motiontrail",
+    "path": "plugins/motiontrail.lua",
+    "description": "Adds a motion-trail to the caret *([gif](https://user-images.githubusercontent.com/3920290/83256814-085ccb00-a1ab-11ea-9e35-e6633cbed1a9.gif))*",
+    "type": "local"
+  },
+  {
+    "name": "navigate",
+    "path": "plugins/navigate.lua",
+    "description": "Allows moving back and forward between document positions, reducing the amount of scrolling",
+    "type": "local"
+  },
+  {
+    "name": "nonicons",
+    "path": "plugins/nonicons.lua",
+    "description": "File icons set for TreeView. Download [font](https://github.com/yamatsum/nonicons/raw/6a2faf4fbdfbe353c5ae6a496740ac4bfb6d0e74/dist/nonicons.ttf) to your config/fonts folder",
+    "type": "local"
+  },
+  {
+    "name": "opacity",
+    "path": "plugins/opacity.lua",
+    "description": "Change the opaqueness/transparency of `lite-xl` using shift+mousewheel or a command.",
+    "type": "local"
+  },
+  {
+    "name": "open_ext",
+    "path": "plugins/open_ext.lua",
+    "description": "Automatically prompts you if you tried to open a binary file in the editor",
+    "type": "local"
+  },
+  {
+    "name": "openfilelocation",
+    "path": "plugins/openfilelocation.lua",
+    "description": "Opens the parent directory of the current file in the file manager",
+    "type": "local"
+  },
+  {
+    "name": "openselected",
+    "path": "plugins/openselected.lua",
+    "description": "Opens the selected filename or url",
+    "type": "local"
+  },
+  {
+    "name": "pdfview",
+    "path": "plugins/pdfview.lua",
+    "description": "PDF preview for TeX files",
+    "type": "local"
+  },
+  {
+    "name": "primary_selection",
+    "path": "plugins/primary_selection.lua",
+    "description": "Adds middle mouse click copy/paste (primary selection). To use this plugin, `xclip` must be installed.",
+    "type": "local"
+  },
+  {
+    "name": "profiler",
+    "path": "plugins/profiler",
+    "description": "Adds the ability to profile lite-xl with the [lua-profiler](https://github.com/charlesmallah/lua-profiler)",
+    "type": "local"
+  },
+  {
+    "name": "rainbowparen",
+    "path": "plugins/rainbowparen.lua",
+    "description": "Show nesting of parentheses with rainbow colours",
+    "type": "local"
+  },
+  {
+    "name": "regexreplacepreview",
+    "path": "plugins/regexreplacepreview.lua",
+    "description": "Allows for you to write a regex and its replacement in one go, and live preview the results.",
+    "type": "local"
+  },
+  {
+    "name": "restoretabs",
+    "path": "plugins/restoretabs.lua",
+    "description": "Keep a list of recently closed tabs, and restore the tab in order on cntrl+shift+t.",
+    "type": "local"
+  },
+  {
+    "name": "scalestatus",
+    "path": "plugins/scalestatus.lua",
+    "description": "Displays current scale (zoom) in status view (depends on scale plugin)",
+    "type": "local"
+  },
+  {
+    "name": "select_colorscheme",
+    "path": "plugins/select_colorscheme.lua",
+    "description": "Select a color theme, like VScode, Sublime Text.(plugin saves changes)",
+    "type": "local"
+  },
+  {
+    "name": "selectionhighlight",
+    "path": "plugins/selectionhighlight.lua",
+    "description": "Highlights regions of code that match the current selection *([screenshot](https://user-images.githubusercontent.com/3920290/80710883-5f597c80-8ae7-11ea-97f0-76dfacc08439.png))*",
+    "type": "local"
+  },
+  {
+    "name": "settings",
+    "path": "plugins/settings.lua",
+    "description": "Provides a GUI to manage core and plugin settings, bindings and select color theme *([video](https://user-images.githubusercontent.com/1702572/169743674-ececae24-f6b7-4ff2-bfa2-c4762cd327d9.mp4))*. (depends on [`widget`](https://github.com/lite-xl/lite-xl-widgets))",
+    "type": "local"
+  },
+  {
+    "name": "smallclock",
+    "path": "plugins/smallclock.lua",
+    "description": "Displays the current time in the corner of the status view",
+    "type": "local"
+  },
+  {
+    "name": "smoothcaret",
+    "path": "plugins/smoothcaret.lua",
+    "description": "Smooth caret animation *([gif](https://user-images.githubusercontent.com/20792268/139006049-a0ba6559-88cb-49a7-8077-4822445b4a1f.gif))*",
+    "type": "local"
+  },
+  {
+    "name": "sort",
+    "path": "plugins/sort.lua",
+    "description": "Sorts selected lines alphabetically",
+    "type": "local"
+  },
+  {
+    "name": "spellcheck",
+    "path": "plugins/spellcheck.lua",
+    "description": "Underlines misspelt words *([screenshot](https://user-images.githubusercontent.com/3920290/79923973-9caa7400-842e-11ea-85d4-7a196a91ca50.png))* *-- note: on Windows a [`words.txt`](https://github.com/dwyl/english-words/blob/master/words.txt) dictionary file must be placed beside the exe*",
+    "type": "local"
+  },
+  {
+    "name": "statusclock",
+    "path": "plugins/statusclock.lua",
+    "description": "Displays the current date and time in the corner of the status view",
+    "type": "local"
+  },
+  {
+    "name": "tabnumbers",
+    "path": "plugins/tabnumbers.lua",
+    "description": "Displays tab numbers from 1–9 next to their names \\*([screenshot](https://user-images.githubusercontent.com/16415678/101285362-007a8500-37e5-11eb-869b-c10eb9d9d902.png))",
+    "type": "local"
+  },
+  {
+    "name": "texcompile",
+    "path": "plugins/texcompile.lua",
+    "description": "Compile Tex files into PDF",
+    "type": "local"
+  },
+  {
+    "name": "theme16",
+    "path": "https://github.com/monolifed/theme16",
+    "description": "Theme manager with base16 themes",
+    "type": "github"
+  },
+  {
+    "name": "themeselect",
+    "path": "plugins/themeselect.lua",
+    "description": "Select a theme based on filename of active document",
+    "type": "local"
+  },
+  {
+    "name": "titleize",
+    "path": "plugins/titleize.lua",
+    "description": "Titleizes selected string (`hello world` => `Hello World`)",
+    "type": "local"
+  },
+  {
+    "name": "todotreeview",
+    "path": "https://github.com/drmargarido/TodoTreeView",
+    "description": "Todo tree viewer for annotations in code like `TODO`, `BUG`, `FIX`, `IMPROVEMENT`",
+    "type": "github"
+  },
+  {
+    "name": "togglesnakecamel",
+    "path": "plugins/togglesnakecamel.lua",
+    "description": "Toggles symbols between `snake_case` and `camelCase`",
+    "type": "local"
+  },
+  {
+    "name": "treeview-menu-extender",
+    "path": "https://github.com/juliardi/lite-xl-treeview-menu-extender",
+    "description": "Extend Lite XL's treeview menu *([screenshot](https://raw.githubusercontent.com/juliardi/lite-xl-treeview-menu-extender/main/screenshot.png))*",
+    "type": "github"
+  },
+  {
+    "name": "typingspeed",
+    "path": "plugins/typingspeed.lua",
+    "description": "Displays your current typing speed in characters and words per minute in the status bar",
+    "type": "local"
+  },
+  {
+    "name": "unboundedscroll",
+    "path": "plugins/unboundedscroll.lua",
+    "description": "Allows scrolling outside the bounds of a document",
+    "type": "local"
+  },
+  {
+    "name": "updatechecker",
+    "path": "https://github.com/vincens2005/lite-xl-updatechecker",
+    "description": "Automatically checks for updates and notifies you",
+    "type": "github"
+  },
+  {
+    "name": "vibe",
+    "path": "https://github.com/eugenpt/lite-xl-vibe",
+    "description": "VI(vim?) bindings with a hint of DOOM Emacs, for lite-xl",
+    "type": "github"
+  },
+  {
+    "name": "visu",
+    "path": "https://github.com/TorchedSammy/Visu",
+    "description": "Audio visualizer for Lite XL",
+    "type": "github"
+  },
+  {
+    "name": "widget",
+    "path": "https://github.com/lite-xl/lite-xl-widgets",
+    "description": "Plugin library that provides a set of re-usable components to more easily write UI elements for your plugins",
+    "type": "github"
+  },
+  {
+    "name": "wordcount",
+    "path": "plugins/wordcount.lua",
+    "description": "Adds in a word count to the statusview.",
+    "type": "local"
+  }
+]
