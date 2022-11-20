@@ -14,8 +14,8 @@
   discord-presence = pkgs.fetchFromGitHub {
     owner = "vincens2005";
     repo = "lite-xl-discord";
-    rev = "bb8b26af4944e74789f27967f71d16a6cbeceb1b";
-    sha256 = "19a49dzav7w2p2h2k8d610kkrgi5gl0p68jdwf36i21l5a8qwj2m";
+    rev = "93ac3abb7381fe6d5c9734e40c008cd26713f1a8";
+    sha256 = "0zmx93arrdhsqw06yfd1kj7739wnzh76cw8bi3psvh5cxpv4yl2l";
   };
   equationgrapher = pkgs.fetchFromGitHub {
     owner = "ThaCuber";
@@ -44,8 +44,8 @@
   gitblame = pkgs.fetchFromGitHub {
     owner = "juliardi";
     repo = "lite-xl-gitblame";
-    rev = "80b53d886d1308048caa69ba892251e67d708f55";
-    sha256 = "0j6l9n62c005h1ys6v5npxq0wi0m4sk700cnab6yv1xilyggq34z";
+    rev = "ab704b40f2a98db5be4dbdd59852455ad1965a7d";
+    sha256 = "0qxq43mzhh7z9c55zdn26xpkyya7sgsmdvpac65vxkaph1b71hbq";
   };
   gitdiff_highlight = pkgs.fetchFromGitHub {
     owner = "vincens2005";
@@ -134,8 +134,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "ff35a605ac339e20b6de6da49247b789d361715e";
-    sha256 = "1zsi92jabp5zxw87hszpbrvn0dw41h3f0s93ysxzawfsq37q0lfv";
+    rev = "b49009a8de895d76e1c9877ba67a824fe07c0b18";
+    sha256 = "0xxy8pkh5d33h0znwnjf1x3sr28skaqk50in31b3jhi4937h17b0";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
