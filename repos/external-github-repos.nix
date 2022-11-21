@@ -134,8 +134,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "b49009a8de895d76e1c9877ba67a824fe07c0b18";
-    sha256 = "0xxy8pkh5d33h0znwnjf1x3sr28skaqk50in31b3jhi4937h17b0";
+    rev = "613601d51a12676ae4bf0421a426ca081d12740b";
+    sha256 = "1585fcl5yyp67pdmbp9lxfxd5dz5rk73v3h873djn5ridzwvx157";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
