@@ -122,8 +122,8 @@
   litepresence = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
     repo = "Litepresence";
-    rev = "859bd46c1713951a0249ca65f1779e389788d656";
-    sha256 = "14v40z5xbagz60fsnfwf8djlf5fy6k60wyavm010202clac6rjqq";
+    rev = "1985e8a59feaaea5085a5add2521293a11f6d376";
+    sha256 = "1a6n98ddw1b0mpsw733h8hjynjq463l4h2djfi54d5qfj4w0pjb2";
   };
   lorem = pkgs.fetchFromGitHub {
     owner = "sheetcoder";
@@ -140,8 +140,8 @@
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
     repo = "lite-xl-lspkind";
-    rev = "72c112b7e7bf13fbb789a3daf97a06094d9b2edb";
-    sha256 = "0gaj3my5qywp1fiysw3jncf6hi3bcpk38mf413sz671ghlc66y02";
+    rev = "272ebd0010cd3e205cfb486b1bae889080fec437";
+    sha256 = "1c3gs8979js0khkp7njh4nsvq2g9s520vhqy0a89iivdh046zrrn";
   };
   theme16 = pkgs.fetchFromGitHub {
     owner = "monolifed";
