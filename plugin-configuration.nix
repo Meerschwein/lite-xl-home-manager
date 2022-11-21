@@ -913,6 +913,7 @@ in [
     };
     config = mkIf (cfg.plugins.lsp || any (c: cfg.lsp.${c.name}) lspconfigs) (mkMerge [
       {
+        programs.lite-xl.plugins.widget = true;
         home.file."${pluginDirectory}/lsp" = {
           recursive = true;
           source = externalRepos.lsp;
