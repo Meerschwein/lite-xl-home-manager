@@ -152,6 +152,12 @@ in [
   )
   (
     mkSimplePlugin {
+      name = "custom_caret";
+      description = "Customize the caret in the editor";
+    }
+  )
+  (
+    mkSimplePlugin {
       name = "datetimestamps";
       description = "Insert date-, time- and date-time-stamps";
     }
@@ -1053,7 +1059,7 @@ in [
   (
     mkSimplePlugin {
       name = "restoretabs";
-      description = "Keep a list of recently closed tabs, and restore the tab in order on cntrl+shift+t.";
+      description = "Keep a list of recently closed tabs, and restore the tab in order on ctrl+shift+t.";
     }
   )
   (

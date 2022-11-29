@@ -134,8 +134,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "613601d51a12676ae4bf0421a426ca081d12740b";
-    sha256 = "1585fcl5yyp67pdmbp9lxfxd5dz5rk73v3h873djn5ridzwvx157";
+    rev = "eaa295e41d34cec97c0b2adec1c6205a0f002d70";
+    sha256 = "0pb696k94vkz16w5wvkwxhrvap0k2jvrwrhjqr0163szx88wdh7a";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
@@ -182,7 +182,7 @@
   widget = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-widgets";
-    rev = "f703c4b68ac795326f6df1598733e84924232f5c";
-    sha256 = "1ivhvza0d1ihzddkrad385d307qqaxm92xgxcabj53ny1vk05804";
+    rev = "80208e57b01621305021ffee672634d3c075d96a";
+    sha256 = "15nn4iswz27wx3pb7q54zgxcrpcggghv3105zfbq5azsx50c91z8";
   };
 }

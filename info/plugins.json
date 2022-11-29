@@ -78,6 +78,12 @@
     "type": "local"
   },
   {
+    "name": "custom_caret",
+    "path": "plugins/custom_caret.lua",
+    "description": "Customize the caret in the editor",
+    "type": "local"
+  },
+  {
     "name": "datetimestamps",
     "path": "plugins/datetimestamps.lua",
     "description": "Insert date-, time- and date-time-stamps",
@@ -794,7 +800,7 @@
   {
     "name": "restoretabs",
     "path": "plugins/restoretabs.lua",
-    "description": "Keep a list of recently closed tabs, and restore the tab in order on cntrl+shift+t.",
+    "description": "Keep a list of recently closed tabs, and restore the tab in order on ctrl+shift+t.",
     "type": "local"
   },
   {
