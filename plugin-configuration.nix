@@ -775,7 +775,7 @@ in [
   (let
     linterconfigs = mapAttrsToList (name: packages: {inherit name packages;}) {
       "luacheck" = [pkgs.lua53Packages.luacheck];
-      "nelua" = []; # Not found in nixpkgs
+      "nelua" = []; # not yet in stable https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/development/interpreters/nelua/default.nix
       "nim" = [pkgs.nim];
       "php" = [pkgs.php];
       "python" = [pkgs.python310Packages.flake8];
@@ -832,7 +832,7 @@ in [
       "nim" = [pkgs.nim];
       "php" = [pkgs.php];
       "pylint" = [pkgs.pylint];
-      "revive" = [pkgs.revive]; # as of nixpkgs 22.05 in unstable
+      "revive" = [pkgs.revive];
       "selene" = [pkgs.selene];
       "shellcheck" = [pkgs.shellcheck];
       "standard" = []; # Not found in nixpkgs
@@ -880,6 +880,7 @@ in [
       "clojure_lsp" = [pkgs.clojure-lsp];
       "cssls" = [pkgs.nodePackages.vscode-css-languageserver-bin];
       "dartls" = [pkgs.dart];
+      "deno" = [pkgs.deno];
       "dockerls" = [pkgs.nodePackages.dockerfile-language-server-nodejs];
       "flow" = [pkgs.flow];
       "gopls" = [pkgs.gopls];
@@ -889,12 +890,12 @@ in [
       "intelephense" = [pkgs.nodePackages.intelephense];
       "jsonls" = [pkgs.nodePackages.vscode-json-languageserver];
       "kotlin_language_server" = [pkgs.kotlin-language-server];
-      "nillsp" = []; # Not found in nixpkgs
+      "nillsp" = [pkgs.nil];
       "nimlsp" = [pkgs.nimlsp];
       "ocaml_lsp" = [pkgs.ocamlPackages.ocaml-lsp];
       "pyls" = []; # Not found in nixpkgs
       "sveltels" = [pkgs.nodePackages.svelte-language-server];
-      "pylsp" = [];
+      "pylsp" = []; # Not found in nixpkgs
       "rls" = [pkgs.rls];
       "rust_analyzer" = [pkgs.rust-analyzer];
       "solargraph" = [pkgs.rubyPackages.solargraph];
@@ -928,9 +929,9 @@ in [
 
       (mkIf cfg.lsp.groovyls {warnings = ["groovyls was not found in nixpkgs you have install it on your own!"];})
       (mkIf cfg.lsp.pyls {warnings = ["pyls was not found in nixpkgs you have install it on your own!"];})
+      (mkIf cfg.lsp.pylsp {warnings = ["pyls was not found in nixpkgs you have install it on your own!"];})
       (mkIf cfg.lsp.sqlls {warnings = ["sqlls was not found in nixpkgs you have install it on your own!"];})
       (mkIf cfg.lsp.vls {warnings = ["vls was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.lsp.nillsp {warnings = ["nil was not found in nixpkgs you have install it on your own!"];})
 
       (mkIf (any (c: cfg.lsp.${c.name}) lspconfigs) {
         programs.lite-xl.hm-module-plugin-before = ''local lspconfig = require "plugins.lsp.config"'';
