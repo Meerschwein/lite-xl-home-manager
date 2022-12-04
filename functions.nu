@@ -63,7 +63,8 @@ def update-external-plugin-repos [] {
   open "info/plugins.json"
   | where type == "github"
   | where ($it.path | str contains "https://github.com")
-  | each { |it| $it | insert _ ($it.path | parse --regex "https://github.com/(?P<owner>.*)/(?P<repo>.*)") } | flatten
+  | each { |it| $it | insert _ ($it.path | parse --regex "https://github.com/(?P<owner>.*)/(?P<repo>.*)") }
+  | flatten | flatten
   | where not ($it.owner | str contains "/")
   | each { |it| $it | insert _ (nix-prefetch-git --quiet $it.path | from json | select rev sha256) }
   | flatten
