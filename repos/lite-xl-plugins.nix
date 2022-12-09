@@ -2,6 +2,6 @@
 pkgs.fetchFromGitHub {
   owner = "lite-xl";
   repo = "lite-xl-plugins";
-  rev = "83652b3db64e1c272d9f0be360edcf75127b8847";
-  sha256 = "0zgxx8adix28k9z4lbdgcrw4538s2nqb1c4i1aw4bv9j6l93sdmj";
+  rev = "83c90a7cba27804eb7f5867aa53a410c085fc20d";
+  sha256 = "19dvigr4ck39zvb3yiih6727pk1wzf8w8gp37sp5g8nj50q81yz2";
 }

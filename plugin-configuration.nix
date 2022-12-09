@@ -896,6 +896,7 @@ in [
       "pyls" = []; # Not found in nixpkgs
       "sveltels" = [pkgs.nodePackages.svelte-language-server];
       "pylsp" = []; # Not found in nixpkgs
+      "pyright" = [pkgs.nodePackages.pyright];
       "rls" = [pkgs.rls];
       "rust_analyzer" = [pkgs.rust-analyzer];
       "solargraph" = [pkgs.rubyPackages.solargraph];

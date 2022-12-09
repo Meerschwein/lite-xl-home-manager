@@ -134,8 +134,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "eaa295e41d34cec97c0b2adec1c6205a0f002d70";
-    sha256 = "0pb696k94vkz16w5wvkwxhrvap0k2jvrwrhjqr0163szx88wdh7a";
+    rev = "69bc5765adb12af4e5cc8bdf8b5437711fe3c33c";
+    sha256 = "0ancw6qs8pdlnhydy1z92920dafdff655bcx8vw0fnc4l08lmr01";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
@@ -170,8 +170,8 @@
   vibe = pkgs.fetchFromGitHub {
     owner = "eugenpt";
     repo = "lite-xl-vibe";
-    rev = "8a8d67da6439bc849bfb22a03a5efe3f75550dce";
-    sha256 = "04wscp6w3vfp2nrf5ijydsqsf0d3dyfjq4i7f2np5y1nw5q0z4gy";
+    rev = "651c4fc55a285eeacbf5992b355d9c80f4fc78cb";
+    sha256 = "18wjd1q15zlrcs9189p8z40a77290k8wn0dg09h8gz03638l7qsy";
   };
   visu = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
