@@ -828,7 +828,6 @@ in [
       "golint" = [pkgs.golint];
       "jshint" = [pkgs.nodePackages.jshint];
       "luacheck" = [pkgs.lua53Packages.luacheck];
-      "teal" = [pkgs.luajitPackages.tl];
       "nim" = [pkgs.nim];
       "php" = [pkgs.php];
       "pylint" = [pkgs.pylint];
@@ -836,6 +835,7 @@ in [
       "selene" = [pkgs.selene];
       "shellcheck" = [pkgs.shellcheck];
       "standard" = []; # Not found in nixpkgs
+      "teal" = [pkgs.luajitPackages.tl];
       "zig" = [pkgs.zig];
     };
   in rec {
@@ -894,7 +894,6 @@ in [
       "nimlsp" = [pkgs.nimlsp];
       "ocaml_lsp" = [pkgs.ocamlPackages.ocaml-lsp];
       "pyls" = []; # Not found in nixpkgs
-      "sveltels" = [pkgs.nodePackages.svelte-language-server];
       "pylsp" = []; # Not found in nixpkgs
       "pyright" = [pkgs.nodePackages.pyright];
       "rls" = [pkgs.rls];
@@ -902,6 +901,7 @@ in [
       "solargraph" = [pkgs.rubyPackages.solargraph];
       "sqlls" = []; # Not found in nixpkgs
       "sumneko_lua" = [pkgs.sumneko-lua-language-server];
+      "sveltels" = [pkgs.nodePackages.svelte-language-server];
       "tsserver" = [pkgs.nodePackages.typescript-language-server];
       "vimls" = [pkgs.nodePackages.vim-language-server];
       "vls" = []; # Not found in nixpkgs
