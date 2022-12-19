@@ -80,8 +80,8 @@
   language_crystal = pkgs.fetchFromGitHub {
     owner = "Tamnac";
     repo = "lite-plugin-crystal";
-    rev = "a4240d15d2e5daa0417fe1b4a91f9db0e5d2235e";
-    sha256 = "1jfj1kr1sgw95d2jji4w54halifz4lma7pxiyjpr8k5cmi3b8c5m";
+    rev = "1913a6dd23a7640b507943230291a15aecc3235d";
+    sha256 = "11i4s3jszfi0qqpdnlr0xd0kb7b2gqcznf0rwl15hmjncf1kfx26";
   };
   language_env = pkgs.fetchFromGitHub {
     owner = "anthonyaxenov";
@@ -98,8 +98,8 @@
   language_nelua = pkgs.fetchFromGitHub {
     owner = "AKDev21";
     repo = "nelua-lite-xl";
-    rev = "371d854b54042043daa8f1d27b1ceebae1120f41";
-    sha256 = "1q649cpkg61cflyij4n1qva17a4r67k1j6ghca1z33pvlldfwfpb";
+    rev = "8bf0ec5e7bf2b8dc9d39e6ebaaa5344fc5969319";
+    sha256 = "1vbczwf4l7yivqz8lazqqbg573dhvhfijq4apfasgzs1xavqvds1";
   };
   language_pony = pkgs.fetchFromGitHub {
     owner = "MrAnyx";
@@ -134,8 +134,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "69bc5765adb12af4e5cc8bdf8b5437711fe3c33c";
-    sha256 = "0ancw6qs8pdlnhydy1z92920dafdff655bcx8vw0fnc4l08lmr01";
+    rev = "a6a8f70d6304bd77c7588e0a652945002df7fbad";
+    sha256 = "188fbagqzvz16zz6apn28r2i8w0w6iq0rcpk6mfz8yklb2wmhl8r";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
@@ -182,7 +182,7 @@
   widget = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-widgets";
-    rev = "80208e57b01621305021ffee672634d3c075d96a";
-    sha256 = "15nn4iswz27wx3pb7q54zgxcrpcggghv3105zfbq5azsx50c91z8";
+    rev = "90f26231c9f6be2c461f4d607473e5dfb99d016c";
+    sha256 = "1bdna8rba70klzxgx6nfba2lzmlm9gdjvyj71crjk72z7cvchxxv";
   };
 }
