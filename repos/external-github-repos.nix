@@ -62,8 +62,8 @@
   kinc_projects = pkgs.fetchFromGitHub {
     owner = "Kode-Community";
     repo = "kinc_plugin";
-    rev = "96939e5a1f83b05717f9103b40635f9a7eed7514";
-    sha256 = "0klf85ldy51hz9jfxs8lb7zh9sjbnwyihw9x9x4j6zrbhfd345b2";
+    rev = "309fe4193a09cf739ed0a058b1a6966a463a1dbd";
+    sha256 = "05qivfs0skgdi5p66f6wswhraw9ymhx3m9vhnz53qf2qkjfhd74w";
   };
   language_autohotkey = pkgs.fetchFromGitHub {
     owner = "devPnal";
@@ -182,7 +182,7 @@
   widget = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-widgets";
-    rev = "90f26231c9f6be2c461f4d607473e5dfb99d016c";
-    sha256 = "1bdna8rba70klzxgx6nfba2lzmlm9gdjvyj71crjk72z7cvchxxv";
+    rev = "a632bfdf7c66bacc272fe2c962621cd9860058e1";
+    sha256 = "1wi1a2fwmnfs36xby0w4gv9ah1w6i1m98w06vxi5409ibadk4dwj";
   };
 }

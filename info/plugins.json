@@ -102,6 +102,12 @@
     "type": "local"
   },
   {
+    "name": "editorconfig",
+    "path": "plugins/editorconfig",
+    "description": "[EditorConfig](https://editorconfig.org/) implementation for Lite XL",
+    "type": "local"
+  },
+  {
     "name": "eofnewline",
     "path": "https://github.com/bokunodev/lite_modules/blob/master/plugins/eofnewline-xl.lua",
     "description": "Make sure the file ends with one blank line.",

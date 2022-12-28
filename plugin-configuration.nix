@@ -172,6 +172,15 @@ in [
     }
   )
   rec {
+    name = "editorconfig";
+    description = "[EditorConfig](https://editorconfig.org/) implementation for Lite XL";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.editorconfig {
+      home.file."${pluginDirectory}/editorconfig/init.lua".source = "${lite-xl-plugins}/plugins/editorconfig/init.lua";
+      home.file."${pluginDirectory}/editorconfig/parser.lua".source = "${lite-xl-plugins}/plugins/editorconfig/parser.lua";
+    };
+  }
+  rec {
     name = "eofnewline";
     description = "Make sure the file ends with one blank line.";
     options = pluginEnableOption name description;
