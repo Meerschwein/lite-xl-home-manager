@@ -614,6 +614,12 @@ in [
           else "")
         linterconfigs);
       }
+
+      (mkMerge (map (c:
+        mkIf cfg.lintplus.${c.name} {
+          home.packages = c.packages;
+        })
+      linterconfigs))
     ]);
   })
   (let
