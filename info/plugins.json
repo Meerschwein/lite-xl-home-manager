@@ -864,6 +864,12 @@
     "type": "local"
   },
   {
+    "name": "tab_switcher",
+    "path": "plugins/tab_switcher.lua",
+    "description": "Switch between open tabs by searching by name",
+    "type": "local"
+  },
+  {
     "name": "tabnumbers",
     "path": "plugins/tabnumbers.lua",
     "description": "Displays tab numbers from 1–9 next to their names \\*([screenshot](https://user-images.githubusercontent.com/16415678/101285362-007a8500-37e5-11eb-869b-c10eb9d9d902.png))",

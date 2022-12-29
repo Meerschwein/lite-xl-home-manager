@@ -1130,6 +1130,12 @@ in [
   )
   (
     mkSimplePlugin {
+      name = "tab_switcher";
+      description = "Switch between open tabs by searching by name";
+    }
+  )
+  (
+    mkSimplePlugin {
       name = "tabnumbers";
       description = "Displays tab numbers from 1–9 next to their names \*([screenshot](https://user-images.githubusercontent.com/16415678/101285362-007a8500-37e5-11eb-869b-c10eb9d9d902.png))";
     }
