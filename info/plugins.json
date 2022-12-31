@@ -132,6 +132,12 @@
     "type": "local"
   },
   {
+    "name": "evergreen",
+    "path": "https://github.com/TorchedSammy/Evergreen.lxl",
+    "description": "Adds Treesitter syntax highlighting support",
+    "type": "github"
+  },
+  {
     "name": "exec",
     "path": "plugins/exec.lua",
     "description": "Runs selected text through shell command and replaces with result",

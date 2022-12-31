@@ -175,6 +175,32 @@ in [
     name = "eval";
     description = "Replaces selected Lua code with its evaluated result";
   })
+  (let
+    evergreenparsers = mapAttrsToList (name: package: {inherit name package;}) {
+      "c" = pkgs.tree-sitter-grammars.tree-sitter-c;
+      "cpp" = pkgs.tree-sitter-grammars.tree-sitter-cpp;
+      "go" = pkgs.tree-sitter-grammars.tree-sitter-go;
+      "lua" = pkgs.tree-sitter-grammars.tree-sitter-lua;
+    };
+  in rec {
+    name = "evergreen";
+    description = "Adds Treesitter syntax highlighting support";
+    options = {
+      options.programs.lite-xl.plugins.evergreen = mkEnableOption description;
+      options.programs.lite-xl.evergreen = namesToEnableOptions evergreenparsers;
+    };
+    config = mkIf (cfg.plugins.evergreen || any (p: cfg.evergreen.${p.name}) evergreenparsers) (mkMerge [
+      {
+        home.file."${pluginDirectory}/evergreen".source = "${externalRepos.evergreen}";
+      }
+
+      (mkMerge (map (p:
+        mkIf cfg.evergreen.${p.name} {
+          home.file.".local/share/tree-sitter/parsers/tree-sitter-${p.name}/parser.so".source = "${p.package}/parser";
+        })
+      evergreenparsers))
+    ]);
+  })
   (mkSimplePlugin {
     name = "exec";
     description = "Runs selected text through shell command and replaces with result";

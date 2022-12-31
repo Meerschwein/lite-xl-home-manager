@@ -23,6 +23,12 @@
     rev = "bd7056b5d4a6f6b98365e1a5e3e78e29ed843d13";
     sha256 = "09fmwqzfsjc3b2ib9l1zp7b2938q92ayykqpad03vmv4z262sy85";
   };
+  evergreen = pkgs.fetchFromGitHub {
+    owner = "TorchedSammy";
+    repo = "Evergreen.lxl";
+    rev = "f20005aa1209c11b499b98fa67c742619d2d3f91";
+    sha256 = "0zrd254g591szifwlpkj5sgq02girdy2wll1yj7a22cvz2sk5vsy";
+  };
   exterm = pkgs.fetchFromGitHub {
     owner = "ShadiestGoat";
     repo = "lite-xl-exterm";
@@ -56,8 +62,8 @@
   immersive-title = pkgs.fetchFromGitHub {
     owner = "takase1121";
     repo = "lite-xl-immersive-title";
-    rev = "094a1ca85b6153b21bd9110d8be0563451ac85ab";
-    sha256 = "14gmfcs0d4kvx2h0qni6a0g5gzf0m2bz59c4sljbwgj57ln813xy";
+    rev = "cf3a8029ac7154ea53ac819a95d44a6ff102f051";
+    sha256 = "0jslk8qw2dphpk11alqrfnxgzhl2cpfmwvwm31xrr636592bbdfm";
   };
   kinc_projects = pkgs.fetchFromGitHub {
     owner = "Kode-Community";
