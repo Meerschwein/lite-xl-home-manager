@@ -10,14 +10,15 @@
     inputs.utils.lib.mkFlake {
       inherit self inputs;
 
-      homeManagerModules = import ./default.nix;
+      nixosModules.lite-xl = import ./default.nix;
+      nixosModules.default = import ./default.nix;
 
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
         formatter = pkgs.treefmt;
 
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nushell
             nix-prefetch-git
