@@ -26,8 +26,8 @@
   evergreen = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
     repo = "Evergreen.lxl";
-    rev = "f20005aa1209c11b499b98fa67c742619d2d3f91";
-    sha256 = "0zrd254g591szifwlpkj5sgq02girdy2wll1yj7a22cvz2sk5vsy";
+    rev = "c4058bfdedd27aee3b23319905b5df7b4ca52ef8";
+    sha256 = "1cd0pqzw8728anj2hckbdwxj10phx888615z9l3ys6r9pdmqq0vs";
   };
   exterm = pkgs.fetchFromGitHub {
     owner = "ShadiestGoat";
