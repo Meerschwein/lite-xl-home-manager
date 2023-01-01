@@ -48,18 +48,17 @@ You need to install ltreesitter for it work.
 ```nix
 programs.lite-xl.package = pkgs.lite-xl.overrideAttrs (_:
 let
-  ltreesitter-src = pkgs.fetchFromGitHub {
-    owner = "euclidianAce";
-    repo = "ltreesitter";
-    rev = "21e9a468af00a54faf76ed72b963e8281fddfadb";
-    sha256 = "sha256-Gorw2Rr8QhOsLU7zNwCXzthqxQdvcmXn7vou9hbaw8k=";
-  };
-  ltreesitter = pkgs.lua5_4.pkgs.buildLuarocksPackage {
+  ltreesitter = luajit.pkgs.buildLuarocksPackage rec {
     pname = "ltreesitter";
     version = "dev";
-    src = ltreesitter-src;
-    knownRockspec = "${ltreesitter-src}/rockspec/ltreesitter-dev-1.rockspec";
-    buildInputs = [pkgs.tree-sitter];
+    src = fetchFromGitHub {
+      owner = "euclidianAce";
+      repo = "ltreesitter";
+      rev = "d25b514840f25ba919884cbf6bd1ca8cd6b37959";
+      sha256 = "sha256-rTlPbywEx887pDNCJtIWgBIdYTskvRhJd4P81+8f/Gs=";
+    };
+    knownRockspec = "${src}/rockspec/ltreesitter-dev-1.rockspec";
+    buildInputs = [tree-sitter];
   };
 in {
   installPhase = ''
