@@ -179,8 +179,20 @@ in [
     evergreenparsers = mapAttrsToList (name: package: {inherit name package;}) {
       "c" = pkgs.tree-sitter-grammars.tree-sitter-c;
       "cpp" = pkgs.tree-sitter-grammars.tree-sitter-cpp;
+      "diff" = pkgs.callPackage (import ./mkTreesitterParser.nix rec {
+        name = "tree-sitter-diff";
+        version = "1d63cd49529ef3153393cf8f620718b274bba715";
+        src = pkgs.fetchFromGitHub {
+          owner = "the-mikedavis";
+          repo = "tree-sitter-diff";
+          rev = version;
+          sha256 = "sha256-nAU3IFUsxcqgx/2cFoqNJXtJ7v7KRHVrfKYIVQEJCEk=";
+        };
+      }) {};
       "go" = pkgs.tree-sitter-grammars.tree-sitter-go;
+      "gomod" = pkgs.tree-sitter-grammars.tree-sitter-gomod;
       "lua" = pkgs.tree-sitter-grammars.tree-sitter-lua;
+      "rust" = pkgs.tree-sitter-grammars.tree-sitter-rust;
     };
   in rec {
     name = "evergreen";
