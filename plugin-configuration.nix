@@ -77,6 +77,37 @@ with lib; let
         value = mkEnableOption "";
       })
       attrListWithName);
+
+  # a plugin with a list of `config` that need be dealt with in general
+  pluginWithSubConfigurations = {
+    name,
+    description,
+    configs, # list of form [{name="foo", ...}]
+    always, # gets used if any option is set
+    perConfig, # c: {} # used if the config is set
+    anyConfig ? {}, # called once if any config is enabled
+    installPackages ? false, # configs need the form [{packages=[pkgs.hello];}]
+    warnIfPackagesEmpty ? installPackages,
+  }: let
+    anyConfigEnabled = any (c: cfg.${name}.${c.name}) configs;
+  in {
+    inherit name description;
+    options = {
+      options.programs.lite-xl.plugins.${name} = mkEnableOption description;
+      options.programs.lite-xl.${name} = namesToEnableOptions configs;
+    };
+    config = mkIf (cfg.plugins.${name} || anyConfigEnabled) (mkMerge [
+      always
+      (mkMerge (map (c: mkIf cfg.${name}.${c.name} (perConfig c)) configs))
+      (mkIf anyConfigEnabled anyConfig)
+      (mkMerge (map (c:
+        mkIf (installPackages && cfg.${name}.${c.name}) {
+          home.packages = c.packages;
+          warnings = mkIf (warnIfPackagesEmpty && (length c.packages == 0)) ["${name}.${c.name} has not installed the required packages"];
+        })
+      configs))
+    ]);
+  };
 in [
   (mkSimplePlugin {
     name = "align_carets";
@@ -194,25 +225,16 @@ in [
       "lua" = pkgs.tree-sitter-grammars.tree-sitter-lua;
       "rust" = pkgs.tree-sitter-grammars.tree-sitter-rust;
     };
-  in rec {
-    name = "evergreen";
-    description = "Adds Treesitter syntax highlighting support";
-    options = {
-      options.programs.lite-xl.plugins.evergreen = mkEnableOption description;
-      options.programs.lite-xl.evergreen = namesToEnableOptions evergreenparsers;
-    };
-    config = mkIf (cfg.plugins.evergreen || any (p: cfg.evergreen.${p.name}) evergreenparsers) (mkMerge [
-      {
-        home.file."${pluginDirectory}/evergreen".source = "${externalRepos.evergreen}";
-      }
-
-      (mkMerge (map (p:
-        mkIf cfg.evergreen.${p.name} {
-          home.file.".local/share/tree-sitter/parsers/tree-sitter-${p.name}/parser.so".source = "${p.package}/parser";
-        })
-      evergreenparsers))
-    ]);
-  })
+  in
+    pluginWithSubConfigurations {
+      name = "evergreen";
+      description = "Adds Treesitter syntax highlighting support";
+      configs = evergreenparsers;
+      always = {home.file."${pluginDirectory}/evergreen".source = "${externalRepos.evergreen}";};
+      perConfig = parser: {
+        home.file.".local/share/tree-sitter/parsers/tree-sitter-${parser.name}/parser.so".source = "${parser.package}/parser";
+      };
+    })
   (mkSimplePlugin {
     name = "exec";
     description = "Runs selected text through shell command and replaces with result";
@@ -254,28 +276,19 @@ in [
       "rustfmt" = [pkgs.rustfmt];
       "zigfmt" = [pkgs.zig];
     };
-  in rec {
-    name = "formatter";
-    description = "formatters for various languages";
-    options = {
-      options.programs.lite-xl.plugins.formatter = mkEnableOption description;
-      options.programs.lite-xl.formatter = namesToEnableOptions formatterconfigs;
-    };
-    config = mkIf (cfg.plugins.formatter || any (c: cfg.formatter.${c.name}) formatterconfigs) (mkMerge [
-      {home.file."${pluginDirectory}/formatter.lua".source = "${externalRepos.formatter}/formatter.lua";}
-
-      (mkIf cfg.formatter.esformatter {warnings = ["esformatter was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.formatter.goimports {warnings = ["goimports was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.formatter.qmlformat {warnings = ["qmlformat was not found in nixpkgs you have install it on your own!"];})
-
-      (mkMerge (map (c:
-        mkIf cfg.formatter.${c.name} {
-          home.packages = c.packages;
-          home.file."${pluginDirectory}/formatter_${c.name}.lua".source = "${externalRepos.formatter}/formatter_${c.name}.lua";
-        })
-      formatterconfigs))
-    ]);
-  })
+  in
+    pluginWithSubConfigurations {
+      name = "formatter";
+      description = "formatters for various languages";
+      configs = formatterconfigs;
+      installPackages = true;
+      always = {
+        home.file."${pluginDirectory}/formatter.lua".source = "${externalRepos.formatter}/formatter.lua";
+      };
+      perConfig = formatter: {
+        home.file."${pluginDirectory}/formatter_${formatter.name}.lua".source = "${externalRepos.formatter}/formatter_${formatter.name}.lua";
+      };
+    })
   (mkSimplePlugin {
     name = "ghmarkdown";
     description = "Opens a preview of the current markdown file in a browser window *([screenshot](https://user-images.githubusercontent.com/3920290/82754898-f7394600-9dc7-11ea-8278-2305363ed372.png))*";
@@ -624,42 +637,25 @@ in [
       "v" = [pkgs.vlang];
       "zig" = [pkgs.zig];
     };
-  in rec {
-    name = "lintplus";
-    description = "Advanced linter with ErrorLens-like error reporting. Compatible with linters made for `linter` *([screenshot](https://raw.githubusercontent.com/liquid600pgm/lintplus/master/screenshots/1.png))*";
-    options = {
-      options.programs.lite-xl.plugins.lintplus = mkEnableOption description;
-      options.programs.lite-xl.lintplus = namesToEnableOptions linterconfigs;
-    };
-    config = mkIf (cfg.plugins.lintplus || any (c: cfg.lintplus.${c.name}) linterconfigs) (mkMerge [
-      {
+  in
+    pluginWithSubConfigurations {
+      name = "lintplus";
+      description = "Advanced linter with ErrorLens-like error reporting. Compatible with linters made for `linter` *([screenshot](https://raw.githubusercontent.com/liquid600pgm/lintplus/master/screenshots/1.png))*";
+      configs = linterconfigs;
+      installPackages = true;
+      always = {
         home.file."${pluginDirectory}/lintplus" = {
           recursive = true;
           source = externalRepos.lintplus;
         };
-      }
-
-      (mkIf cfg.lintplus.nelua {warnings = ["nelua was not found in nixpkgs you have install it on your own!"];})
-
-      (mkIf (any (c: cfg.lintplus.${c.name}) linterconfigs) {
+      };
+      anyConfig = {
         programs.lite-xl.hm-module-plugin-before = ''local lintplus = require "plugins.lintplus"'';
-      })
-
-      {
-        programs.lite-xl.hm-module-plugin = concatStrings (map (c:
-          if cfg.lintplus.${c.name}
-          then "lintplus.load(\"${c.name}\")\n"
-          else "")
-        linterconfigs);
-      }
-
-      (mkMerge (map (c:
-        mkIf cfg.lintplus.${c.name} {
-          home.packages = c.packages;
-        })
-      linterconfigs))
-    ]);
-  })
+      };
+      perConfig = linter: {
+        programs.lite-xl.hm-module-plugin = ''lintplus.load("${linter.name}")'';
+      };
+    })
   (let
     linterconfigs = mapAttrsToList (name: packages: {inherit name packages;}) {
       "ameba" = [pkgs.ameba];
@@ -680,27 +676,17 @@ in [
       "teal" = [pkgs.luajitPackages.tl];
       "zig" = [pkgs.zig];
     };
-  in rec {
-    name = "linter";
-    description = "Linters for multiple languages";
-    options = {
-      options.programs.lite-xl.plugins.linter = mkEnableOption description;
-      options.programs.lite-xl.linter = namesToEnableOptions linterconfigs;
-    };
-    config = mkIf (cfg.plugins.linter || any (c: cfg.linter.${c.name}) linterconfigs) (mkMerge [
-      {home.file."${pluginDirectory}/linter.lua".source = "${externalRepos.linter}/linter.lua";}
-
-      (mkIf cfg.linter.dscanner {warnings = ["dscanner was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.linter.standard {warnings = ["standard was not found in nixpkgs you have install it on your own!"];})
-
-      (mkMerge (map (c:
-        mkIf cfg.linter.${c.name} {
-          home.packages = c.packages;
-          home.file."${pluginDirectory}/linter_${c.name}.lua".source = "${externalRepos.linter}/linter_${c.name}.lua";
-        })
-      linterconfigs))
-    ]);
-  })
+  in
+    pluginWithSubConfigurations {
+      name = "linter";
+      description = "Linters for multiple languages";
+      configs = linterconfigs;
+      installPackages = true;
+      always = {home.file."${pluginDirectory}/linter.lua".source = "${externalRepos.linter}/linter.lua";};
+      perConfig = linter: {
+        home.file."${pluginDirectory}/linter_${linter.name}.lua".source = "${externalRepos.linter}/linter_${linter.name}.lua";
+      };
+    })
   # UNIMPLEMENTED
   # "litepresence"
   # "Discord rich presence for Lite XL (display file editing in Discord)"
@@ -744,47 +730,26 @@ in [
       "yamlls" = [pkgs.nodePackages.yaml-language-server];
       "zls" = [pkgs.zls];
     };
-  in rec {
-    name = "lsp";
-    description = "Provides code completion (also known as IntelliSense) using the Language Server Protocol";
-    options = {
-      options.programs.lite-xl.plugins.lsp = mkEnableOption description;
-      options.programs.lite-xl.lsp = builtins.listToAttrs (map (c: {
-          name = c.name;
-          value = mkEnableOption "";
-        })
-        lspconfigs);
-    };
-    config = mkIf (cfg.plugins.lsp || any (c: cfg.lsp.${c.name}) lspconfigs) (mkMerge [
-      {
+  in
+    pluginWithSubConfigurations {
+      name = "lsp";
+      description = "Provides code completion (also known as IntelliSense) using the Language Server Protocol";
+      configs = lspconfigs;
+      installPackages = true;
+      always = {
         programs.lite-xl.plugins.widget = true;
         home.file."${pluginDirectory}/lsp" = {
           recursive = true;
           source = externalRepos.lsp;
         };
-      }
-
-      (mkIf cfg.lsp.groovyls {warnings = ["groovyls was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.lsp.pyls {warnings = ["pyls was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.lsp.pylsp {warnings = ["pyls was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.lsp.sqlls {warnings = ["sqlls was not found in nixpkgs you have install it on your own!"];})
-      (mkIf cfg.lsp.vls {warnings = ["vls was not found in nixpkgs you have install it on your own!"];})
-
-      (mkIf (any (c: cfg.lsp.${c.name}) lspconfigs) {
+      };
+      anyConfig = {
         programs.lite-xl.hm-module-plugin-before = ''local lspconfig = require "plugins.lsp.config"'';
-      })
-
-      {
-        programs.lite-xl.hm-module-plugin = concatStrings (map (c:
-          if cfg.lsp.${c.name}
-          then "lspconfig.${c.name}.setup()\n"
-          else "")
-        lspconfigs);
-      }
-
-      (mkMerge (map (c: mkIf cfg.lsp.${c.name} {home.packages = c.packages;}) lspconfigs))
-    ]);
-  })
+      };
+      perConfig = lsp: {
+        programs.lite-xl.hm-module-plugin = "lspconfig.${lsp.name}.setup()";
+      };
+    })
   rec {
     name = "lspkind";
     description = "Completion menu kind/type icons for Lite XL LSP";
