@@ -4,7 +4,7 @@
 
 A derivation of lite-xl that supports a couple of extra options.
 To use it use the package outputs or apply the overlay.
-It doesn't support mach since I can't test it.
+It doesn't support Mac since I can't test it.
 
 ```nix
 # assuming you have the overlay applied
