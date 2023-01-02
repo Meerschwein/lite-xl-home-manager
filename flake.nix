@@ -6,8 +6,11 @@
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
-  outputs = inputs @ {self, ...}:
-    inputs.utils.lib.mkFlake {
+  outputs = inputs @ {self, ...}: let
+    lite-xl-overlay = final: prev: {lite-xl = prev.callPackage ./lite-xl.nix {};};
+  in
+    inputs.utils.lib.mkFlake
+    {
       inherit self inputs;
 
       nixosModules.lite-xl = import ./default.nix;
@@ -17,6 +20,9 @@
         pkgs = channels.nixpkgs;
       in {
         formatter = pkgs.treefmt;
+
+        packages.lite-xl = pkgs.callPackage ./lite-xl.nix {};
+        packages.default = pkgs.callPackage ./lite-xl.nix {};
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -29,5 +35,8 @@
           ];
         };
       };
+
+      overlays.default = lite-xl-overlay;
+      overlays.lite-xl = lite-xl-overlay;
     };
 }
