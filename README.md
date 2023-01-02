@@ -1,5 +1,23 @@
 # Home manager module for lite-xl
 
+## Lite-xl build
+
+A derivation of lite-xl that supports a couple of extra options.
+To use it use the package outputs or apply the overlay.
+It doesn't support mach since I can't test it.
+
+```nix
+# assuming you have the overlay applied
+programs.lite-xl.package = pkgs.lite-xl.override {
+  # has no effect if jgmdevBranch is false
+  useLuajit = true;
+  # a branch of lite-xl with some changes https://github.com/jgmdev/lite-xl/releases/tag/v2.1.1
+  jgmdevBranch = true;
+  # to use the evergreen plugin https://github.com/TorchedSammy/Evergreen.lxl/
+  useLtreesitter = true;
+};
+```
+
 ## Colors
 
 The color themes from [lite-xl-colors](https://github.com/lite-xl/lite-xl-colors)
@@ -48,7 +66,7 @@ You need to install ltreesitter for it work.
 ```nix
 programs.lite-xl.package = pkgs.lite-xl.overrideAttrs (_:
 let
-  ltreesitter = luajit.pkgs.buildLuarocksPackage rec {
+  ltreesitter = lua5_4.pkgs.buildLuarocksPackage rec {
     pname = "ltreesitter";
     version = "dev";
     src = fetchFromGitHub {
@@ -67,6 +85,8 @@ in {
   '';
 });
 ```
+
+Or use the provided lite-xl build with `useLtreesitter = true;`.
 
 Extra options to install supported parsers.
 
