@@ -50,8 +50,8 @@
   gitblame = pkgs.fetchFromGitHub {
     owner = "juliardi";
     repo = "lite-xl-gitblame";
-    rev = "ab704b40f2a98db5be4dbdd59852455ad1965a7d";
-    sha256 = "0qxq43mzhh7z9c55zdn26xpkyya7sgsmdvpac65vxkaph1b71hbq";
+    rev = "6de7a97bb2b635ac667750f49087afd9980f2e06";
+    sha256 = "1d23m57hdv785dnx9bv7rl33335jza2vaaj0njxssqga1qzrkzlf";
   };
   gitdiff_highlight = pkgs.fetchFromGitHub {
     owner = "vincens2005";
@@ -140,8 +140,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "a6a8f70d6304bd77c7588e0a652945002df7fbad";
-    sha256 = "188fbagqzvz16zz6apn28r2i8w0w6iq0rcpk6mfz8yklb2wmhl8r";
+    rev = "3504e7a4bb64034568714a5d8a734ad5411dcdc4";
+    sha256 = "0cky7qf3yi3m0s10dmrk0fcynh3d9rfnl2x6vlwb1i1c5ygkcamn";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
@@ -188,7 +188,7 @@
   widget = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-widgets";
-    rev = "a632bfdf7c66bacc272fe2c962621cd9860058e1";
-    sha256 = "1wi1a2fwmnfs36xby0w4gv9ah1w6i1m98w06vxi5409ibadk4dwj";
+    rev = "fba74c225a262f0b6897e43f83b620d76801a7ee";
+    sha256 = "1dhk91ml9d50mqh0g38d9pjhb3gx556p34vkz95zc65if3mdcwg0";
   };
 }

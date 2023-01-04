@@ -37,7 +37,7 @@
   },
   {
     "name": "black",
-    "path": "https://git.sr.ht/\\~tmpod/black-lite",
+    "path": "https://git.sr.ht/~tmpod/black-lite",
     "description": "Integrates the [black](https://github.com/psf/black) Python formatter with lite",
     "type": "unknown"
   },
@@ -396,6 +396,12 @@
     "type": "local"
   },
   {
+    "name": "language_htaccess",
+    "path": "/plugins/language_htaccess.lua",
+    "description": "Syntax for [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) files.",
+    "type": "unknown"
+  },
+  {
     "name": "language_ignore",
     "path": "https://github.com/anthonyaxenov/lite-xl-ignore-syntax",
     "description": "Syntax for [.gitignore](https://git-scm.com/docs/gitignore), [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file) and some other `.*ignore` files",
@@ -489,6 +495,12 @@
     "name": "language_nim",
     "path": "plugins/language_nim.lua",
     "description": "Syntax for the [Nim](https://nim-lang.org) programming language",
+    "type": "local"
+  },
+  {
+    "name": "language_nix",
+    "path": "plugins/language_nix.lua",
+    "description": "Syntax for the [Nix](https://nixos.wiki/wiki/Overview_of_the_Nix_Language) expression language",
     "type": "local"
   },
   {

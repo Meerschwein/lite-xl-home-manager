@@ -433,6 +433,10 @@ in [
     name = "language_hs";
     description = "Syntax for the [Haskell](https://www.haskell.org/) programming language";
   })
+  (mkSimplePlugin {
+    name = "language_htaccess";
+    description = "Syntax for [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) files.";
+  })
   (mkPluginSingleFileInExternalRepo {
     name = "language_ignore";
     description = "Syntax for [.gitignore](https://git-scm.com/docs/gitignore), [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file) and some other `.*ignore` files";
@@ -500,6 +504,10 @@ in [
   (mkSimplePlugin {
     name = "language_nim";
     description = "Syntax for the [Nim](https://nim-lang.org) programming language";
+  })
+  (mkSimplePlugin {
+    name = "language_nix";
+    description = "Syntax for the [Nix](https://nixos.wiki/wiki/Overview_of_the_Nix_Language) expression language";
   })
   (mkSimplePlugin {
     name = "language_objc";
