@@ -2,6 +2,6 @@
 pkgs.fetchFromGitHub {
   owner = "lite-xl";
   repo = "lite-xl-colors";
-  rev = "b2451583149151575aafbceb04845bc0249ad7ab";
-  sha256 = "0irk5nbs7wlx37bhqvx6jrv1xr5c09ccsg0fsdnfw1h057banqs1";
+  rev = "b3a9cdd37838927e408614818ca43c6b173655fd";
+  sha256 = "1xp4m1rpbszga0npk68zffg1iyfmdi6lkj42hq37lvq8mjdl5cw0";
 }
