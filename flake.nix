@@ -24,6 +24,16 @@
         packages.lite-xl = pkgs.callPackage ./lite-xl.nix {};
         packages.default = pkgs.callPackage ./lite-xl.nix {};
 
+        apps.update = inputs.utils.lib.mkApp {
+          drv = pkgs.writeShellApplication {
+            name = "update";
+            runtimeInputs = with pkgs; [nix-prefetch-git nushell treefmt alejandra];
+            text = ''
+              nu ${./update.nu} && treefmt
+            '';
+          };
+        };
+
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nushell
