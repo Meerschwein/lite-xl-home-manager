@@ -755,6 +755,7 @@ in [
       "solargraph" = [pkgs.rubyPackages.solargraph];
       "sqlls" = []; # Not found in nixpkgs
       "sumneko_lua" = [pkgs.sumneko-lua-language-server];
+      "omnisharp" = [];
       "sveltels" = [pkgs.nodePackages.svelte-language-server];
       "tsserver" = [pkgs.nodePackages.typescript-language-server];
       "vimls" = [pkgs.nodePackages.vim-language-server];
