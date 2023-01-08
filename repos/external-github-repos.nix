@@ -17,6 +17,18 @@
     rev = "93ac3abb7381fe6d5c9734e40c008cd26713f1a8";
     sha256 = "0zmx93arrdhsqw06yfd1kj7739wnzh76cw8bi3psvh5cxpv4yl2l";
   };
+  encoding = pkgs.fetchFromGitHub {
+    owner = "jgmdev";
+    repo = "lite-xl-encoding";
+    rev = "b1ddf226277ea12a03ed9db2ddda458988020e91";
+    sha256 = "0lpzrxi7wpiv8p3bwyzn7rgibzjj3xa4hah9dfw5phckbdx3yw76";
+  };
+  encodings = pkgs.fetchFromGitHub {
+    owner = "jgmdev";
+    repo = "lite-xl-encoding";
+    rev = "b1ddf226277ea12a03ed9db2ddda458988020e91";
+    sha256 = "0lpzrxi7wpiv8p3bwyzn7rgibzjj3xa4hah9dfw5phckbdx3yw76";
+  };
   equationgrapher = pkgs.fetchFromGitHub {
     owner = "ThaCuber";
     repo = "equationgrapher";
@@ -140,8 +152,8 @@
   lsp = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-lsp";
-    rev = "3504e7a4bb64034568714a5d8a734ad5411dcdc4";
-    sha256 = "0cky7qf3yi3m0s10dmrk0fcynh3d9rfnl2x6vlwb1i1c5ygkcamn";
+    rev = "6cd545b6e602bc09501423a089be98c81ae79df8";
+    sha256 = "0jhxmi82jlmkgavnhp9bl7r5d6z29qyj77bnqs9j64vapgn1ap8s";
   };
   lspkind = pkgs.fetchFromGitHub {
     owner = "TorchedSammy";
@@ -149,11 +161,35 @@
     rev = "272ebd0010cd3e205cfb486b1bae889080fec437";
     sha256 = "1c3gs8979js0khkp7njh4nsvq2g9s520vhqy0a89iivdh046zrrn";
   };
+  multithreaded_find_file = pkgs.fetchFromGitHub {
+    owner = "jgmdev";
+    repo = "lite-xl-threads";
+    rev = "e61ffd28fc852b143fe468c4b43c68d605f22335";
+    sha256 = "04aab455y5wwgigfwhpa0zhmyymzcm9bprz6499gcf8ipwa45kkp";
+  };
+  multithreaded_project_search = pkgs.fetchFromGitHub {
+    owner = "jgmdev";
+    repo = "lite-xl-threads";
+    rev = "e61ffd28fc852b143fe468c4b43c68d605f22335";
+    sha256 = "04aab455y5wwgigfwhpa0zhmyymzcm9bprz6499gcf8ipwa45kkp";
+  };
+  net = pkgs.fetchFromGitHub {
+    owner = "jgmdev";
+    repo = "lite-xl-net";
+    rev = "a1930395c89e24344db686f2e83ce67a602c5dbf";
+    sha256 = "11hw570xbq3n2zhm7lww4mmxvy02k0gvmrgcqrxm8jaswyaiwy1x";
+  };
   theme16 = pkgs.fetchFromGitHub {
     owner = "monolifed";
     repo = "theme16";
     rev = "c39b33cb318d4baa2b4b9cc6e6370cb3ede3ef22";
     sha256 = "152m3l0jw8lhmkjvh10rb78i5gw5mkf4rhzcs4gzsy199hl3rn54";
+  };
+  threads = pkgs.fetchFromGitHub {
+    owner = "jgmdev";
+    repo = "lite-xl-threads";
+    rev = "e61ffd28fc852b143fe468c4b43c68d605f22335";
+    sha256 = "04aab455y5wwgigfwhpa0zhmyymzcm9bprz6499gcf8ipwa45kkp";
   };
   todotreeview = pkgs.fetchFromGitHub {
     owner = "drmargarido";
@@ -188,7 +224,7 @@
   widget = pkgs.fetchFromGitHub {
     owner = "lite-xl";
     repo = "lite-xl-widgets";
-    rev = "fba74c225a262f0b6897e43f83b620d76801a7ee";
-    sha256 = "1dhk91ml9d50mqh0g38d9pjhb3gx556p34vkz95zc65if3mdcwg0";
+    rev = "03d7ec956e38eaebe492b00daa0baf8760372fe0";
+    sha256 = "02xjfr2zhp4pafvv8gdv36rz0c214hfrnysjy3s76ix10byi3syv";
   };
 }

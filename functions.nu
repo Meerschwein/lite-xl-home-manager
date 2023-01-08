@@ -19,9 +19,9 @@ def get-plugins-info [] {
   | each { |it| $it | parse --regex '\|\s+\[`(?P<name>.*)`\]\((?P<path>.*)\)(?:\\\*)?\s*\|(?P<description>.*)\|' }
   | flatten
   | str trim
-  | update name { |it| $it.name | str downcase | str replace '\+' 'plus' | str replace ' ' '_' }
-  | update path { |it| $it.path | str replace '\?raw=.*$' '' }
-  | update description { |it| $it.description | str replace '\n' ' ' }
+  | update name { |it| $it.name | str downcase | str replace --all '\+' 'plus' | str replace --all ' ' '_' }
+  | update path { |it| $it.path | str replace --all '\?raw=.*$' '' }
+  | update description { |it| $it.description | str replace --all '\n' ' ' }
   | insert type { |$it|
     if ($it.path | str starts-with "plugins/") {
       "local"

@@ -8,6 +8,7 @@ with lib; let
 
   configDirectory = "${config.xdg.configHome}/lite-xl";
   pluginDirectory = "${configDirectory}/plugins";
+  libraryDirectory = "${configDirectory}/libraries";
 
   lite-xl-plugins = import ./repos/lite-xl-plugins.nix {inherit pkgs;};
 
@@ -184,6 +185,29 @@ in [
     config = mkIf cfg.plugins.editorconfig {
       home.file."${pluginDirectory}/editorconfig/init.lua".source = "${lite-xl-plugins}/plugins/editorconfig/init.lua";
       home.file."${pluginDirectory}/editorconfig/parser.lua".source = "${lite-xl-plugins}/plugins/editorconfig/parser.lua";
+    };
+  }
+  rec {
+    name = "encoding";
+    description = "Add support for detecting file and string encodings as converting between them.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.encoding {
+      home.file."${libraryDirectory}/encoding/init.x86_64-linux.so".source = pkgs.stdenv.mkDerivation {
+        inherit name;
+        src = externalRepos.encoding;
+        nativeBuildInputs = with pkgs; [meson ninja pkg-config];
+        buildInputs = with pkgs; [libuchardet SDL2];
+        installPhase = "cp encoding.so $out";
+      };
+    };
+  }
+  rec {
+    name = "encodings";
+    description = "Properly read files that are not encoded in UTF-8 or ASCII by auto-detecting their encoding and allows saving on different text encodings.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.encodings {
+      home.file."${pluginDirectory}/encodings.lua".source = "${externalRepos.encodings}/plugins/encodings.lua";
+      programs.lite-xl.plugins.encoding = true;
     };
   }
   rec {
@@ -765,6 +789,7 @@ in [
     config = mkIf cfg.plugins.lspkind {
       home.file."${pluginDirectory}/lspkind/init.lua".source = "${externalRepos.lspkind}/init.lua";
       home.file."${pluginDirectory}/autocomplete.lua".source = "${externalRepos.lspkind}/autocomplete.lua";
+      programs.lite-xl.plugins.lsp = true;
     };
   }
   (mkSimplePlugin {
@@ -787,10 +812,42 @@ in [
     name = "motiontrail";
     description = "Adds a motion-trail to the caret *([gif](https://user-images.githubusercontent.com/3920290/83256814-085ccb00-a1ab-11ea-9e35-e6633cbed1a9.gif))*";
   })
+  rec {
+    name = "multithreaded_find_file";
+    description = "Threaded project find files.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.multithreaded_find_file {
+      home.file."${pluginDirectory}/findfileimproved.lua".source = "${externalRepos.multithreaded_find_file}/plugins/findfileimproved.lua";
+      programs.lite-xl.plugins.threads = true;
+    };
+  }
+  rec {
+    name = "multithreaded_project_search";
+    description = "Threaded project search with 5-10x better performance.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.multithreaded_find_file {
+      home.file."${pluginDirectory}/projectsearch.lua".source = "${externalRepos.multithreaded_project_search}/plugins/projectsearch.lua";
+      programs.lite-xl.plugins.threads = true;
+    };
+  }
   (mkSimplePlugin {
     name = "navigate";
     description = "Allows moving back and forward between document positions, reducing the amount of scrolling";
   })
+  rec {
+    name = "net";
+    description = "Add support for TCP and UDP sockets using SDL_net.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.net {
+      home.file."${libraryDirectory}/net/init.x86_64-linux.so".source = pkgs.stdenv.mkDerivation {
+        inherit name;
+        src = externalRepos.net;
+        nativeBuildInputs = with pkgs; [meson ninja pkg-config];
+        buildInputs = with pkgs; [SDL2 SDL2_net];
+        installPhase = "cp net.so $out";
+      };
+    };
+  }
   (mkSimplePlugin {
     name = "nonicons";
     description = "File icons set for TreeView.";
@@ -898,6 +955,20 @@ in [
     name = "themeselect";
     description = "Select a theme based on filename of active document";
   })
+  rec {
+    name = "threads";
+    description = "Adds the missing multithreading functionality.";
+    options = pluginEnableOption name description;
+    config = mkIf cfg.plugins.threads {
+      home.file."${libraryDirectory}/threads/init.x86_64-linux.so".source = pkgs.stdenv.mkDerivation {
+        inherit name;
+        src = externalRepos.threads;
+        nativeBuildInputs = with pkgs; [meson ninja pkg-config];
+        buildInputs = with pkgs; [SDL2];
+        installPhase = "cp thread.so $out";
+      };
+    };
+  }
   (mkSimplePlugin {
     name = "titleize";
     description = "Titleizes selected string (`hello world` => `Hello World`)";
@@ -943,7 +1014,7 @@ in [
     description = "Plugin library that provides a set of re-usable components to more easily write UI elements for your plugins";
     options = pluginEnableOption name description;
     config = mkIf cfg.plugins.widget {
-      home.file."${configDirectory}/widget" = {
+      home.file."${libraryDirectory}/widget" = {
         recursive = true;
         source = externalRepos.widget;
       };

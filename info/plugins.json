@@ -108,6 +108,18 @@
     "type": "local"
   },
   {
+    "name": "encoding",
+    "path": "https://github.com/jgmdev/lite-xl-encoding",
+    "description": "Add support for detecting file and string encodings as converting between them.",
+    "type": "github"
+  },
+  {
+    "name": "encodings",
+    "path": "https://github.com/jgmdev/lite-xl-encoding",
+    "description": "Properly read files that are not encoded in UTF-8 or ASCII by auto-detecting their encoding and allows saving on different text encodings.",
+    "type": "github"
+  },
+  {
     "name": "eofnewline",
     "path": "https://github.com/bokunodev/lite_modules/blob/master/plugins/eofnewline-xl.lua",
     "description": "Make sure the file ends with one blank line.",
@@ -756,10 +768,28 @@
     "type": "local"
   },
   {
+    "name": "multithreaded_find_file",
+    "path": "https://github.com/jgmdev/lite-xl-threads",
+    "description": "Threaded project find files.",
+    "type": "github"
+  },
+  {
+    "name": "multithreaded_project_search",
+    "path": "https://github.com/jgmdev/lite-xl-threads",
+    "description": "Threaded project search with 5-10x better performance.",
+    "type": "github"
+  },
+  {
     "name": "navigate",
     "path": "plugins/navigate.lua",
     "description": "Allows moving back and forward between document positions, reducing the amount of scrolling",
     "type": "local"
+  },
+  {
+    "name": "net",
+    "path": "https://github.com/jgmdev/lite-xl-net",
+    "description": "Add support for TCP and UDP sockets using SDL_net.",
+    "type": "github"
   },
   {
     "name": "nonicons",
@@ -910,6 +940,12 @@
     "path": "plugins/themeselect.lua",
     "description": "Select a theme based on filename of active document",
     "type": "local"
+  },
+  {
+    "name": "threads",
+    "path": "https://github.com/jgmdev/lite-xl-threads",
+    "description": "Adds the missing multithreading functionality.",
+    "type": "github"
   },
   {
     "name": "titleize",
