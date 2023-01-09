@@ -36,6 +36,10 @@
     "path": "colors/gruvbox_dark.lua"
   },
   {
+    "name": "jb-fleet",
+    "path": "colors/jb-fleet.lua"
+  },
+  {
     "name": "jellybeans",
     "path": "colors/jellybeans.lua"
   },
