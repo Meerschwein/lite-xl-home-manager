@@ -826,7 +826,7 @@ in [
     name = "multithreaded_project_search";
     description = "Threaded project search with 5-10x better performance.";
     options = pluginEnableOption name description;
-    config = mkIf cfg.plugins.multithreaded_find_file {
+    config = mkIf cfg.plugins.multithreaded_project_search {
       home.file."${pluginDirectory}/projectsearch.lua".source = "${externalRepos.multithreaded_project_search}/plugins/projectsearch.lua";
       programs.lite-xl.plugins.threads = true;
     };
