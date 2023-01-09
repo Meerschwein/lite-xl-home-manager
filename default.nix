@@ -71,6 +71,8 @@ in
       (mkMerge (map (colorTheme:
         mkIf cfg.colors.${colorTheme.name} {
           home.file."${colorsDirectory}/${colorTheme.name}.lua".source = "${lite-xl-colors}/${colorTheme.path}";
+          programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+          programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.${colorTheme.name}")'';
         })
       allColors))
     ]);
