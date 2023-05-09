@@ -2,7 +2,7 @@
   description = "";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
@@ -19,18 +19,14 @@
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
-        formatter = pkgs.treefmt;
-
         packages.lite-xl = pkgs.callPackage ./lite-xl.nix {};
         packages.default = pkgs.callPackage ./lite-xl.nix {};
 
         apps.update = inputs.utils.lib.mkApp {
           drv = pkgs.writeShellApplication {
             name = "update";
-            runtimeInputs = with pkgs; [nix-prefetch-git nushell treefmt alejandra];
-            text = ''
-              nu ${./update.nu} && treefmt
-            '';
+            runtimeInputs = with pkgs; [nix-prefetch-git nushell alejandra];
+            text = builtins.readFile ./update.sh;
           };
         };
 
@@ -42,6 +38,7 @@
             # Formatting
             treefmt
             alejandra
+            gofumpt
           ];
         };
       };

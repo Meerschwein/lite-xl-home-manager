@@ -1,3 +1,11 @@
 [formatter.nix]
 command = "alejandra"
 includes = ["*.nix"]
+
+[formatter.golang]
+command = "gofumpt"
+includes = ["*.go"]
+options = [
+  "-w",
+  "-extra"
+]
