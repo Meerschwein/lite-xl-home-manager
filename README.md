@@ -38,3 +38,11 @@ programs.lite-xl.plugins = {
 };
 ```
 
+## LSP
+
+There are extra options for the lsp plugin which also install the relevant
+language servers and enable them via a plugin.
+
+```nix
+programs.lite-xl.lsp.bashls = true;
+```

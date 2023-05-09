@@ -10,6 +10,7 @@ in {
   imports = [
     ./plugins.nix
     ./colors.nix
+    ./lsp.nix
   ];
 
   options.programs.lite-xl = {
