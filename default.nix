@@ -8,8 +8,10 @@ with lib; let
   cfg = config.programs.lite-xl;
 in {
   imports = [
-    ./plugins.nix
     ./colors.nix
+    ./plugins.nix
+
+    ./lintplus.nix
     ./lsp.nix
   ];
 

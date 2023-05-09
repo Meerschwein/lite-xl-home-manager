@@ -46,3 +46,9 @@ language servers and enable them via a plugin.
 ```nix
 programs.lite-xl.lsp.bashls = true;
 ```
+
+## Lintplus
+
+```nix
+programs.lite-xl.lintplus.shellcheck = true;
+```
