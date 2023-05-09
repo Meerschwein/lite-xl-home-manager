@@ -13,6 +13,11 @@ type Manifest struct {
 	Addons []Addon
 }
 
+type Dependency struct {
+	Version  string
+	Optional bool
+}
+
 type Addon struct {
 	Description  string
 	Id           string
@@ -24,7 +29,7 @@ type Addon struct {
 	Url          string
 	Version      string
 	Checksum     string
-	Dependencies map[string]any
+	Dependencies map[string]Dependency
 
 	srcName string
 }
@@ -134,9 +139,12 @@ func (r *Remote) LoadManifest() {
 
 func (a *Addon) GetDependenciesConfig() string {
 	deps := []string{}
-	for dep := range a.Dependencies {
-		deps = append(deps, fmt.Sprintf(`programs.lite-xl.plugins.%s = true;`, dep))
-		depsNeeded[dep] = true
+	for id, dep := range a.Dependencies {
+		if dep.Optional == true {
+			continue
+		}
+		deps = append(deps, fmt.Sprintf(`programs.lite-xl.plugins.%s = true;`, id))
+		depsNeeded[id] = true
 	}
 	return strings.Join(deps, "\n")
 }
