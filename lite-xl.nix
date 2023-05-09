@@ -54,7 +54,7 @@ in
         else "lite-xl";
       sha256 =
         if jgmdevBranch
-        then "sha256-LnKtUlLhd10oNi6Yb8ZrGuBNJYybZtE+eG90HyywRek="
+        then "sha256-5VwQPIK8IgPM+aMyLFy0KWYaZg5Oc7TTiEE8phCFUD8="
         else "sha256-tZ9bCazs4ygNl5RKFNUtxboaMcG8a7mIz2FuiExX1d4=";
     };
 
