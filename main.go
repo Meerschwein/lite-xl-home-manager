@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"sort"
 )
 
 type Manifest struct {
@@ -139,7 +140,9 @@ func (r *Remote) LoadManifest() {
 
 func (a *Addon) GetDependenciesConfig() string {
 	deps := []string{}
-	for id, dep := range a.Dependencies {
+	keys := sortedKeys(a.Dependencies)
+	for _, id := range keys {
+		dep := a.Dependencies[id]
 		if dep.Optional == true {
 			continue
 		}
@@ -236,6 +239,15 @@ func AddPlugin(name, config string) {
 	}
 }
 
+func sortedKeys[T any](m map[string]T) []string {
+	keys := make([]string, 0, len(m))
+	for key := range m {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
 func main() {
 	litexl_plugins := Remote{
 		// gitUrl:  "https://github.com/lite-xl/lite-xl-plugins", // nelua is gone :(
@@ -245,20 +257,23 @@ func main() {
 	litexl_plugins.createFile()
 
 	sources := []string{}
-	for _, s := range srcs {
-		sources = append(sources, s)
+	keys := sortedKeys(srcs)
+	for _, key := range keys {
+		sources = append(sources, srcs[key])
 	}
 
 	options := []string{}
 	configs := []string{}
-	for _, p := range plugins {
-		options = append(options, p.option)
-		configs = append(configs, p.config)
+	keys = sortedKeys(plugins)
+	for _, p := range keys {
+		options = append(options, plugins[p].option)
+		configs = append(configs, plugins[p].config)
 	}
 
 	depsOptions := []string{}
 	depsAssertions := []string{}
-	for dep := range depsNeeded {
+	keys = sortedKeys(depsNeeded)
+	for _, dep := range keys {
 		_, found := plugins[dep]
 		if !found {
 			depsOptions = append(depsOptions, fmt.Sprintf(`%s = mkEnableOption "%s";`, dep, dep))
@@ -269,6 +284,7 @@ func main() {
 	fileContents := fmt.Sprintf(
 		`{config, lib, pkgs, ...}: with lib; let
 cfg = config.programs.lite-xl;
+
 %s
 in {
 options.programs.lite-xl.plugins = {
