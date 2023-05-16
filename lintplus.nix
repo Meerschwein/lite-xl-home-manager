@@ -21,7 +21,7 @@ with lib; let
 in {
   options.programs.lite-xl.lintplus = builtins.listToAttrs (map (c: {
       name = c.name;
-      value = mkEnableOption "c.name";
+      value = mkEnableOption "${c.name}";
     })
     linterconfigs);
 

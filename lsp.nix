@@ -46,7 +46,7 @@ with lib; let
 in {
   options.programs.lite-xl.lsp = builtins.listToAttrs (map (c: {
       name = c.name;
-      value = mkEnableOption "c.name";
+      value = mkEnableOption "${c.name}";
     })
     lspconfigs);
 
