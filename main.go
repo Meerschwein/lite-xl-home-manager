@@ -6,8 +6,8 @@ import (
 	"io"
 	"os"
 	"os/exec"
-	"strings"
 	"sort"
+	"strings"
 )
 
 type Manifest struct {
@@ -121,21 +121,25 @@ func (r *Remote) LoadManifest() {
 	names, err := srcDir.Readdirnames(-1)
 	assertNoError(err)
 
+	found := false
 	for _, s := range names {
 		if strings.HasSuffix(s, ".lua") {
 			AddSource(r)
+			pluginId := strings.TrimSuffix(s, ".lua")
 			config := fmt.Sprintf(
 				`(mkIf cfg.plugins.%s {home.file."${config.xdg.configHome}/lite-xl/plugins/%s".source = "${%s-src}/%s";})`,
-				r.srcName, s, r.srcName, s)
+				pluginId, s, r.srcName, s)
 
-			AddPlugin(r.srcName, config)
+			AddPlugin(pluginId, config)
 
 			r.manifest = &Manifest{}
-			return
+			found = true
 		}
 	}
 
-	panic("no idea here")
+	if !found {
+		panic("no idea here")
+	}
 }
 
 func (a *Addon) GetDependenciesConfig() string {
