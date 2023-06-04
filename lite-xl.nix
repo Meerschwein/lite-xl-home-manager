@@ -34,8 +34,8 @@
     src = fetchFromGitHub {
       owner = "euclidianAce";
       repo = "ltreesitter";
-      rev = "d25b514840f25ba919884cbf6bd1ca8cd6b37959";
-      sha256 = "sha256-rTlPbywEx887pDNCJtIWgBIdYTskvRhJd4P81+8f/Gs=";
+      rev = "2fee1956f42bb09504db2ef8eeec2c3b7da7b0c0";
+      sha256 = "sha256-2utF61JJYtdn64EDSOnglRRxBRaTOgu4vgd3LsQY/cE=";
     };
     knownRockspec = "${src}/rockspec/ltreesitter-dev-1.rockspec";
     buildInputs = [tree-sitter];
