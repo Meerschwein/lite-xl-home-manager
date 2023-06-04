@@ -9,7 +9,7 @@ with lib; let
 
   linterconfigs = mapAttrsToList (name: packages: {inherit name packages;}) {
     luacheck = [pkgs.lua53Packages.luacheck];
-    nelua = []; # not yet in stable https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/development/interpreters/nelua/default.nix
+    nelua = [pkgs.nelua];
     nim = [pkgs.nim];
     php = [pkgs.php];
     python = [pkgs.python310Packages.flake8];

@@ -2,7 +2,7 @@
   description = "";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
