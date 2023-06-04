@@ -56,6 +56,9 @@ func nixPrefetchGit(remoteUrl string) *NixPrefetchGitOutput {
 		remoteUrl = remoteUrl[:lastIndex]
 	}
 
+	// because of equationgrapher
+	remoteUrl = strings.TrimSuffix(remoteUrl, "?raw=1")
+
 	args = append(args, "--url", remoteUrl)
 
 	// println(strings.Join(args, " "))
@@ -254,8 +257,7 @@ func sortedKeys[T any](m map[string]T) []string {
 
 func main() {
 	litexl_plugins := Remote{
-		// gitUrl:  "https://github.com/lite-xl/lite-xl-plugins", // nelua is gone :(
-		gitUrl:  "https://github.com/Meerschwein/lite-xl-plugins",
+		gitUrl:  "https://github.com/lite-xl/lite-xl-plugins",
 		srcName: "lite-xl-plugins",
 	}
 	litexl_plugins.createFile()
