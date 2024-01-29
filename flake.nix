@@ -7,33 +7,30 @@
   };
 
   outputs = inputs @ {self, ...}: let
-    lite-xl-overlay = final: prev: {lite-xl = prev.callPackage ./lite-xl.nix {};};
+    lite-xl-pkg = pkgs: pkgs.callPackage ./lite-xl.nix {};
+    lite-xl-overlay = final: prev: {lite-xl = lite-xl-pkg prev;};
   in
     inputs.utils.lib.mkFlake
     {
       inherit self inputs;
 
-      nixosModules.lite-xl = import ./default.nix;
-      nixosModules.default = import ./default.nix;
+      homeModules.lite-xl = import ./default.nix;
 
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
-        packages.lite-xl = pkgs.callPackage ./lite-xl.nix {};
-        packages.default = pkgs.callPackage ./lite-xl.nix {};
-
-        apps.update = inputs.utils.lib.mkApp {
-          drv = pkgs.writeShellApplication {
-            name = "update";
-            runtimeInputs = with pkgs; [nix-prefetch-git nushell alejandra];
-            text = builtins.readFile ./update.sh;
-          };
-        };
+        packages.lite-xl = lite-xl-pkg pkgs;
+        apps.lite-xl = inputs.utils.lib.mkApp {drv = lite-xl-pkg pkgs;};
+        overlays.lite-xl = lite-xl-overlay;
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nushell
             nix-prefetch-git
+            go
+            gopls
+            delve
+            io
 
             # Formatting
             treefmt
@@ -42,8 +39,5 @@
           ];
         };
       };
-
-      overlays.default = lite-xl-overlay;
-      overlays.lite-xl = lite-xl-overlay;
     };
 }
