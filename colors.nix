@@ -7,18 +7,24 @@ with lib; let
   cfg = config.programs.lite-xl;
   lite-xl-colors-src = builtins.fetchGit {
     url = "https://github.com/lite-xl/lite-xl-colors";
-    rev = "000e6aa9f8068e436db54c7b9ab6a6f7ff2c0ecf";
+    rev = "315f1233351ec1176f2177e1cca53e6db145e6eb";
   };
 in {
   options.programs.lite-xl.colors = {
     abyss = mkEnableOption "abyss";
     betelgeuse = mkEnableOption "betelgeuse";
     c0mfy = mkEnableOption "c0mfy";
+    catppuccin-frappe = mkEnableOption "catppuccin-frappe";
+    catppuccin-latte = mkEnableOption "catppuccin-latte";
+    catppuccin-macchiato = mkEnableOption "catppuccin-macchiato";
+    catppuccin-mocha = mkEnableOption "catppuccin-mocha";
     cold_lime = mkEnableOption "cold_lime";
     dracula = mkEnableOption "dracula";
     duorand = mkEnableOption "duorand";
     duotone = mkEnableOption "duotone";
     everforest = mkEnableOption "everforest";
+    flexoki_dark = mkEnableOption "flexoki_dark";
+    flexoki_light = mkEnableOption "flexoki_light";
     github-dark-dimmed = mkEnableOption "github-dark-dimmed";
     github = mkEnableOption "github";
     github_dark = mkEnableOption "github_dark";
@@ -31,14 +37,17 @@ in {
     moe = mkEnableOption "moe";
     monodark = mkEnableOption "monodark";
     monokai-pro-classic = mkEnableOption "monokai-pro-classic";
+    monokai-sublime = mkEnableOption "monokai-sublime";
     monokai = mkEnableOption "monokai";
     nord = mkEnableOption "nord";
     onedark = mkEnableOption "onedark";
     only_dark = mkEnableOption "only_dark";
     plasma = mkEnableOption "plasma";
+    predawn = mkEnableOption "predawn";
     rose-pine-dawn = mkEnableOption "rose-pine-dawn";
     rose-pine-moon = mkEnableOption "rose-pine-moon";
     rose-pine = mkEnableOption "rose-pine";
+    solarized_dark = mkEnableOption "solarized_dark";
     solarized_light = mkEnableOption "solarized_light";
     solarobj = mkEnableOption "solarobj";
     synthwave = mkEnableOption "synthwave";
@@ -62,6 +71,26 @@ in {
       home.file.".config/lite-xl/colors/c0mfy.lua".source = "${lite-xl-colors-src}/colors/c0mfy.lua";
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
       programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.c0mfy")'';
+    })
+    (mkIf cfg.colors.catppuccin-frappe {
+      home.file.".config/lite-xl/colors/catppuccin-frappe.lua".source = "${lite-xl-colors-src}/colors/catppuccin-frappe.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.catppuccin-frappe")'';
+    })
+    (mkIf cfg.colors.catppuccin-latte {
+      home.file.".config/lite-xl/colors/catppuccin-latte.lua".source = "${lite-xl-colors-src}/colors/catppuccin-latte.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.catppuccin-latte")'';
+    })
+    (mkIf cfg.colors.catppuccin-macchiato {
+      home.file.".config/lite-xl/colors/catppuccin-macchiato.lua".source = "${lite-xl-colors-src}/colors/catppuccin-macchiato.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.catppuccin-macchiato")'';
+    })
+    (mkIf cfg.colors.catppuccin-mocha {
+      home.file.".config/lite-xl/colors/catppuccin-mocha.lua".source = "${lite-xl-colors-src}/colors/catppuccin-mocha.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.catppuccin-mocha")'';
     })
     (mkIf cfg.colors.cold_lime {
       home.file.".config/lite-xl/colors/cold_lime.lua".source = "${lite-xl-colors-src}/colors/cold_lime.lua";
@@ -87,6 +116,16 @@ in {
       home.file.".config/lite-xl/colors/everforest.lua".source = "${lite-xl-colors-src}/colors/everforest.lua";
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
       programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.everforest")'';
+    })
+    (mkIf cfg.colors.flexoki_dark {
+      home.file.".config/lite-xl/colors/flexoki_dark.lua".source = "${lite-xl-colors-src}/colors/flexoki_dark.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.flexoki_dark")'';
+    })
+    (mkIf cfg.colors.flexoki_light {
+      home.file.".config/lite-xl/colors/flexoki_light.lua".source = "${lite-xl-colors-src}/colors/flexoki_light.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.flexoki_light")'';
     })
     (mkIf cfg.colors.github-dark-dimmed {
       home.file.".config/lite-xl/colors/github-dark-dimmed.lua".source = "${lite-xl-colors-src}/colors/github-dark-dimmed.lua";
@@ -148,6 +187,11 @@ in {
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
       programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.monokai-pro-classic")'';
     })
+    (mkIf cfg.colors.monokai-sublime {
+      home.file.".config/lite-xl/colors/monokai-sublime.lua".source = "${lite-xl-colors-src}/colors/monokai-sublime.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.monokai-sublime")'';
+    })
     (mkIf cfg.colors.monokai {
       home.file.".config/lite-xl/colors/monokai.lua".source = "${lite-xl-colors-src}/colors/monokai.lua";
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
@@ -173,6 +217,11 @@ in {
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
       programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.plasma")'';
     })
+    (mkIf cfg.colors.predawn {
+      home.file.".config/lite-xl/colors/predawn.lua".source = "${lite-xl-colors-src}/colors/predawn.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.predawn")'';
+    })
     (mkIf cfg.colors.rose-pine-dawn {
       home.file.".config/lite-xl/colors/rose-pine-dawn.lua".source = "${lite-xl-colors-src}/colors/rose-pine-dawn.lua";
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
@@ -187,6 +236,11 @@ in {
       home.file.".config/lite-xl/colors/rose-pine.lua".source = "${lite-xl-colors-src}/colors/rose-pine.lua";
       programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
       programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.rose-pine")'';
+    })
+    (mkIf cfg.colors.solarized_dark {
+      home.file.".config/lite-xl/colors/solarized_dark.lua".source = "${lite-xl-colors-src}/colors/solarized_dark.lua";
+      programs.lite-xl.hm-module-plugin-before = ''local core = require "core"'';
+      programs.lite-xl.hm-module-plugin = ''core.reload_module("colors.solarized_dark")'';
     })
     (mkIf cfg.colors.solarized_light {
       home.file.".config/lite-xl/colors/solarized_light.lua".source = "${lite-xl-colors-src}/colors/solarized_light.lua";

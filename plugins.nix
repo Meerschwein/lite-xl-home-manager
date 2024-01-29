@@ -7,6 +7,10 @@
 with lib; let
   cfg = config.programs.lite-xl;
 
+  base16-src = builtins.fetchGit {
+    url = "https://github.com/SmileYzn/base16.git";
+    rev = "55b1c3fda3afe7dc2dd894f258389c64b9441da9";
+  };
   black-src = builtins.fetchGit {
     url = "https://git.sr.ht/~tmpod/black-lite";
     rev = "2a1ab1b703f954edb39efb73e72b44c0d18b30a2";
@@ -14,6 +18,10 @@ with lib; let
   build-src = builtins.fetchGit {
     url = "https://github.com/adamharrison/lite-xl-ide.git";
     rev = "95639db0f96d8d560d48fa525496329dcbadbbde";
+  };
+  codeplus-src = builtins.fetchGit {
+    url = "https://github.com/chqs-git/code-plus.git";
+    rev = "b336999b707709df2ddcb865f664623c5beceabb";
   };
   console-src = builtins.fetchGit {
     url = "https://github.com/franko/console";
@@ -24,8 +32,12 @@ with lib; let
     rev = "95639db0f96d8d560d48fa525496329dcbadbbde";
   };
   discord-presence-src = builtins.fetchGit {
-    url = "https://github.com/vincens2005/lite-xl-discord";
-    rev = "93ac3abb7381fe6d5c9734e40c008cd26713f1a8";
+    url = "https://github.com/vincens2005/lite-xl-discord2";
+    rev = "71648e55ad812dc1029a3df70c17656ec7cb63bf";
+  };
+  easingpreview-src = builtins.fetchGit {
+    url = "https://github.com/ThaCuber/lite-xl-easingpreview";
+    rev = "ea349d12a9570264408dc1567af660b8d4568d3d";
   };
   encoding-src = builtins.fetchGit {
     url = "https://github.com/jgmdev/lite-xl-encoding";
@@ -45,7 +57,7 @@ with lib; let
   };
   evergreen-src = builtins.fetchGit {
     url = "https://github.com/TorchedSammy/Evergreen.lxl";
-    rev = "c4058bfdedd27aee3b23319905b5df7b4ca52ef8";
+    rev = "e5e6ade897a6316fbe6fc610520d195e27737912";
   };
   exterm-src = builtins.fetchGit {
     url = "https://github.com/ShadiestGoat/lite-xl-exterm";
@@ -69,7 +81,7 @@ with lib; let
   };
   gitdiff_highlight-src = builtins.fetchGit {
     url = "https://github.com/vincens2005/lite-xl-gitdiff-highlight";
-    rev = "12ddfa619054dfdd1ed86426d60b569dc536c43e";
+    rev = "f0e02b6a7299acbeb4a5f137b26830a6cca96cc8";
   };
   immersive-title-src = builtins.fetchGit {
     url = "https://github.com/takase1121/lite-xl-immersive-title";
@@ -81,7 +93,7 @@ with lib; let
   };
   language_containerfile-src = builtins.fetchGit {
     url = "https://github.com/FilBot3/lite-xl-language-containerfile";
-    rev = "2d5e46b1051c48d74f9b63f9844913c630d19b87";
+    rev = "ae4eddc3f3fa1a0db56344b3b6db0ec0f2283880";
   };
   language_crystal-src = builtins.fetchGit {
     url = "https://github.com/Tamnac/lite-plugin-crystal";
@@ -109,7 +121,11 @@ with lib; let
   };
   lite-xl-plugins-src = builtins.fetchGit {
     url = "https://github.com/lite-xl/lite-xl-plugins";
-    rev = "6386bd03b1782d0e2364ec971f5b87373a0e2d9e";
+    rev = "f3efbe86a457786afb5cb9993772cec2fc8e8815";
+  };
+  lite-xl-vibe-src = builtins.fetchGit {
+    url = "https://github.com/eugenpt/lite-xl-vibe";
+    rev = "651c4fc55a285eeacbf5992b355d9c80f4fc78cb";
   };
   litepresence-src = builtins.fetchGit {
     url = "https://github.com/TorchedSammy/Litepresence";
@@ -121,19 +137,27 @@ with lib; let
   };
   lsp-src = builtins.fetchGit {
     url = "https://github.com/lite-xl/lite-xl-lsp";
-    rev = "607cc85978b6fe169c2e6cabe779776d752267f8";
+    rev = "7c6a72b6a296e9948df6dfdf322d04a43c90e546";
   };
   lsp_c-src = builtins.fetchGit {
     url = "https://github.com/adamharrison/lite-xl-lsp-servers";
-    rev = "d8f85c5fb09d2a97594fead7cf495510e22502a9";
+    rev = "58e1192b7abe9cff60c59b1c8b098fde88f03ecc";
   };
   lsp_lua-src = builtins.fetchGit {
     url = "https://github.com/adamharrison/lite-xl-lsp-servers";
-    rev = "d8f85c5fb09d2a97594fead7cf495510e22502a9";
+    rev = "58e1192b7abe9cff60c59b1c8b098fde88f03ecc";
+  };
+  lsp_rust-src = builtins.fetchGit {
+    url = "https://github.com/adamharrison/lite-xl-lsp-servers";
+    rev = "58e1192b7abe9cff60c59b1c8b098fde88f03ecc";
   };
   lsp_snippets-src = builtins.fetchGit {
     url = "https://github.com/vqns/lite-xl-snippets";
-    rev = "37a24d0970668e39ef571e607281e61135f7a504";
+    rev = "1f0bba02bb3af6df9cb2ce72526851b427caf143";
+  };
+  lsp_zig-src = builtins.fetchGit {
+    url = "https://github.com/adamharrison/lite-xl-lsp-servers";
+    rev = "f872f65e30360b3add7b33122fec52fe6b5119bb";
   };
   lspkind-src = builtins.fetchGit {
     url = "https://github.com/TorchedSammy/lite-xl-lspkind";
@@ -157,7 +181,15 @@ with lib; let
   };
   snippets-src = builtins.fetchGit {
     url = "https://github.com/vqns/lite-xl-snippets";
-    rev = "37a24d0970668e39ef571e607281e61135f7a504";
+    rev = "1f0bba02bb3af6df9cb2ce72526851b427caf143";
+  };
+  sortcss-src = builtins.fetchGit {
+    url = "https://github.com/felixsanz/lite-xl-sortcss";
+    rev = "ee4552148b38663e24dedcf4bc80ba8221dd54e0";
+  };
+  terminal-src = builtins.fetchGit {
+    url = "https://github.com/adamharrison/lite-xl-terminal.git";
+    rev = "394b577caa1491d2a8fb92b1b4acd93b2feb6b9a";
   };
   theme16-src = builtins.fetchGit {
     url = "https://github.com/monolifed/theme16";
@@ -169,7 +201,7 @@ with lib; let
   };
   todotreeview-src = builtins.fetchGit {
     url = "https://github.com/drmargarido/TodoTreeView";
-    rev = "a9371045ead3bc820224d3be55db6066398a11c5";
+    rev = "28995b7e6292980ce7ce73b372d3cdd4dac80e7f";
   };
   treeview-extender-src = builtins.fetchGit {
     url = "https://github.com/juliardi/lite-xl-treeview-extender";
@@ -179,13 +211,13 @@ with lib; let
     url = "https://github.com/vincens2005/lite-xl-updatechecker";
     rev = "3478abd43618da857d4315bcc8fddf08c27e1150";
   };
-  vibe-src = builtins.fetchGit {
-    url = "https://github.com/eugenpt/lite-xl-vibe";
-    rev = "651c4fc55a285eeacbf5992b355d9c80f4fc78cb";
-  };
   visu-src = builtins.fetchGit {
     url = "https://github.com/TorchedSammy/Visu";
     rev = "782c7b1ebde38dad2c3c6a1c1dee6761230dea16";
+  };
+  wal-src = builtins.fetchGit {
+    url = "https://github.com/ThaCuber/wal.lxl";
+    rev = "93bcf5dd64e9945fa88de22cd8b62a5467e80d6a";
   };
   widget-src = builtins.fetchGit {
     url = "https://github.com/lite-xl/lite-xl-widgets";
@@ -202,11 +234,14 @@ in {
     autosave = mkEnableOption "autosave";
     autosaveonfocuslost = mkEnableOption "autosaveonfocuslost";
     autowrap = mkEnableOption "autowrap";
+    base16 = mkEnableOption "base16";
     bigclock = mkEnableOption "bigclock";
     black = mkEnableOption "black";
     bracketmatch = mkEnableOption "bracketmatch";
     build = mkEnableOption "build";
     centerdoc = mkEnableOption "centerdoc";
+    cleanstart = mkEnableOption "cleanstart";
+    codeplus = mkEnableOption "codeplus";
     colorpicker = mkEnableOption "colorpicker";
     colorpreview = mkEnableOption "colorpreview";
     console = mkEnableOption "console";
@@ -216,6 +251,7 @@ in {
     debugger = mkEnableOption "debugger";
     discord-presence = mkEnableOption "discord-presence";
     dragdropselected = mkEnableOption "dragdropselected";
+    easingpreview = mkEnableOption "easingpreview";
     editorconfig = mkEnableOption "editorconfig";
     encodings = mkEnableOption "encodings";
     endwise = mkEnableOption "endwise";
@@ -254,6 +290,7 @@ in {
     gitopen = mkEnableOption "gitopen";
     gitstatus = mkEnableOption "gitstatus";
     gofmt = mkEnableOption "gofmt";
+    gui_filepicker = mkEnableOption "gui_filepicker";
     ide = mkEnableOption "ide";
     immersive-title = mkEnableOption "immersive-title";
     indent_convert = mkEnableOption "indent_convert";
@@ -268,14 +305,18 @@ in {
     language_batch = mkEnableOption "language_batch";
     language_bib = mkEnableOption "language_bib";
     language_blade = mkEnableOption "language_blade";
+    language_blueprint = mkEnableOption "language_blueprint";
+    language_c7 = mkEnableOption "language_c7";
     language_caddyfile = mkEnableOption "language_caddyfile";
     language_cmake = mkEnableOption "language_cmake";
     language_containerfile = mkEnableOption "language_containerfile";
     language_crystal = mkEnableOption "language_crystal";
     language_csharp = mkEnableOption "language_csharp";
+    language_cue = mkEnableOption "language_cue";
     language_d = mkEnableOption "language_d";
     language_dart = mkEnableOption "language_dart";
     language_diff = mkEnableOption "language_diff";
+    language_edp = mkEnableOption "language_edp";
     language_elixir = mkEnableOption "language_elixir";
     language_elm = mkEnableOption "language_elm";
     language_env = mkEnableOption "language_env";
@@ -289,6 +330,7 @@ in {
     language_gmi = mkEnableOption "language_gmi";
     language_go = mkEnableOption "language_go";
     language_gravity = mkEnableOption "language_gravity";
+    language_hare = mkEnableOption "language_hare";
     language_haxe = mkEnableOption "language_haxe";
     language_hlsl = mkEnableOption "language_hlsl";
     language_hs = mkEnableOption "language_hs";
@@ -297,6 +339,7 @@ in {
     language_ini = mkEnableOption "language_ini";
     language_java = mkEnableOption "language_java";
     language_jiyu = mkEnableOption "language_jiyu";
+    language_json = mkEnableOption "language_json";
     language_jsx = mkEnableOption "language_jsx";
     language_julia = mkEnableOption "language_julia";
     language_ksy = mkEnableOption "language_ksy";
@@ -305,6 +348,7 @@ in {
     language_lobster = mkEnableOption "language_lobster";
     language_lox = mkEnableOption "language_lox";
     language_make = mkEnableOption "language_make";
+    language_marte = mkEnableOption "language_marte";
     language_meson = mkEnableOption "language_meson";
     language_miniscript = mkEnableOption "language_miniscript";
     language_moon = mkEnableOption "language_moon";
@@ -364,6 +408,7 @@ in {
     linter_zig = mkEnableOption "linter_zig";
     lintplus = mkEnableOption "lintplus";
     lite-debugger = mkEnableOption "lite-debugger";
+    lite-xl-vibe = mkEnableOption "lite-xl-vibe";
     litepresence = mkEnableOption "litepresence";
     lorem = mkEnableOption "lorem";
     lsp = mkEnableOption "lsp";
@@ -399,29 +444,33 @@ in {
     smoothcaret = mkEnableOption "smoothcaret";
     snippets = mkEnableOption "snippets";
     sort = mkEnableOption "sort";
+    sortcss = mkEnableOption "sortcss";
     spellcheck = mkEnableOption "spellcheck";
     statusclock = mkEnableOption "statusclock";
     sticky_scroll = mkEnableOption "sticky_scroll";
+    su_save = mkEnableOption "su_save";
     svg_screenshot = mkEnableOption "svg_screenshot";
     tab_switcher = mkEnableOption "tab_switcher";
     tabnumbers = mkEnableOption "tabnumbers";
+    terminal = mkEnableOption "terminal";
+    tetris = mkEnableOption "tetris";
     texcompile = mkEnableOption "texcompile";
     theme16 = mkEnableOption "theme16";
     themeselect = mkEnableOption "themeselect";
     titleize = mkEnableOption "titleize";
     todotreeview = mkEnableOption "todotreeview";
-    todotreeview-xl = mkEnableOption "todotreeview-xl";
     togglesnakecamel = mkEnableOption "togglesnakecamel";
     treeview-extender = mkEnableOption "treeview-extender";
     typingspeed = mkEnableOption "typingspeed";
     unboundedscroll = mkEnableOption "unboundedscroll";
     updatechecker = mkEnableOption "updatechecker";
-    vibe = mkEnableOption "vibe";
     visu = mkEnableOption "visu";
+    wal = mkEnableOption "wal";
     widget = mkEnableOption "widget";
     wordcount = mkEnableOption "wordcount";
     # dummy dependencies
     encoding = mkEnableOption "encoding";
+    json = mkEnableOption "json";
     lsp_c = mkEnableOption "lsp_c";
     thread = mkEnableOption "thread";
   };
@@ -431,11 +480,14 @@ in {
     (mkIf cfg.plugins.autosave {home.file."${config.xdg.configHome}/lite-xl/plugins/autosave.lua".source = "${lite-xl-plugins-src}/plugins/autosave.lua";})
     (mkIf cfg.plugins.autosaveonfocuslost {home.file."${config.xdg.configHome}/lite-xl/plugins/autosaveonfocuslost.lua".source = "${lite-xl-plugins-src}/plugins/autosaveonfocuslost.lua";})
     (mkIf cfg.plugins.autowrap {home.file."${config.xdg.configHome}/lite-xl/plugins/autowrap.lua".source = "${lite-xl-plugins-src}/plugins/autowrap.lua";})
+    (mkIf cfg.plugins.base16 {home.file."${config.xdg.configHome}/lite-xl/plugins/base16".source = "${base16-src}/plugins/base16";})
     (mkIf cfg.plugins.bigclock {home.file."${config.xdg.configHome}/lite-xl/plugins/bigclock.lua".source = "${lite-xl-plugins-src}/plugins/bigclock.lua";})
     (mkIf cfg.plugins.black {home.file."${config.xdg.configHome}/lite-xl/plugins/black".source = "${black-src}";})
     (mkIf cfg.plugins.bracketmatch {home.file."${config.xdg.configHome}/lite-xl/plugins/bracketmatch.lua".source = "${lite-xl-plugins-src}/plugins/bracketmatch.lua";})
     (mkIf cfg.plugins.build {home.file."${config.xdg.configHome}/lite-xl/plugins/build".source = "${build-src}/plugins/build";})
     (mkIf cfg.plugins.centerdoc {home.file."${config.xdg.configHome}/lite-xl/plugins/centerdoc.lua".source = "${lite-xl-plugins-src}/plugins/centerdoc.lua";})
+    (mkIf cfg.plugins.cleanstart {home.file."${config.xdg.configHome}/lite-xl/plugins/cleanstart.lua".source = "${lite-xl-plugins-src}/plugins/cleanstart.lua";})
+    (mkIf cfg.plugins.codeplus {home.file."${config.xdg.configHome}/lite-xl/plugins/codeplus".source = "${codeplus-src}";})
     (mkIf cfg.plugins.colorpicker {
       home.file."${config.xdg.configHome}/lite-xl/plugins/colorpicker.lua".source = "${lite-xl-plugins-src}/plugins/colorpicker.lua";
       programs.lite-xl.plugins.widget = true;
@@ -446,8 +498,12 @@ in {
     (mkIf cfg.plugins.custom_caret {home.file."${config.xdg.configHome}/lite-xl/plugins/custom_caret.lua".source = "${lite-xl-plugins-src}/plugins/custom_caret.lua";})
     (mkIf cfg.plugins.datetimestamps {home.file."${config.xdg.configHome}/lite-xl/plugins/datetimestamps.lua".source = "${lite-xl-plugins-src}/plugins/datetimestamps.lua";})
     (mkIf cfg.plugins.debugger {home.file."${config.xdg.configHome}/lite-xl/plugins/debugger".source = "${build-src}/plugins/debugger";})
-    (mkIf cfg.plugins.discord-presence {home.file."${config.xdg.configHome}/lite-xl/plugins/discord-presence".source = "${discord-presence-src}";})
+    (mkIf cfg.plugins.discord-presence {
+      home.file."${config.xdg.configHome}/lite-xl/plugins/discord-presence".source = "${discord-presence-src}";
+      programs.lite-xl.plugins.json = true;
+    })
     (mkIf cfg.plugins.dragdropselected {home.file."${config.xdg.configHome}/lite-xl/plugins/dragdropselected.lua".source = "${lite-xl-plugins-src}/plugins/dragdropselected.lua";})
+    (mkIf cfg.plugins.easingpreview {home.file."${config.xdg.configHome}/lite-xl/plugins/easingpreview.lua".source = "${easingpreview-src}/easingpreview.lua";})
     (mkIf cfg.plugins.editorconfig {home.file."${config.xdg.configHome}/lite-xl/plugins/editorconfig".source = "${lite-xl-plugins-src}/plugins/editorconfig";})
     (mkIf cfg.plugins.encodings {
       home.file."${config.xdg.configHome}/lite-xl/plugins/encodings.lua".source = "${encoding-src}/plugins/encodings.lua";
@@ -457,7 +513,7 @@ in {
     (mkIf cfg.plugins.eofnewline {
       home.file."${config.xdg.configHome}/lite-xl/plugins/eofnewline.lua".source = pkgs.fetchurl {
         url = "https://github.com/bokunodev/lite_modules/blob/master/plugins/eofnewline-xl.lua?raw=1";
-        sha256 = "e3607f5107f4e42fd99006289b8214a473824c6973b8e9c637b4657eba763650";
+        sha256 = "80c07430455e665b5f5009667fe76458603af505ce411a38b38e82e7604d95f0";
       };
     })
     (mkIf cfg.plugins.ephemeral_tabs {home.file."${config.xdg.configHome}/lite-xl/plugins/ephemeral_tabs.lua".source = "${lite-xl-plugins-src}/plugins/ephemeral_tabs.lua";})
@@ -497,6 +553,7 @@ in {
     (mkIf cfg.plugins.gitopen {home.file."${config.xdg.configHome}/lite-xl/plugins/gitopen.lua".source = "${lite-xl-plugins-src}/plugins/gitopen.lua";})
     (mkIf cfg.plugins.gitstatus {home.file."${config.xdg.configHome}/lite-xl/plugins/gitstatus.lua".source = "${lite-xl-plugins-src}/plugins/gitstatus.lua";})
     (mkIf cfg.plugins.gofmt {home.file."${config.xdg.configHome}/lite-xl/plugins/gofmt.lua".source = "${lite-xl-plugins-src}/plugins/gofmt.lua";})
+    (mkIf cfg.plugins.gui_filepicker {home.file."${config.xdg.configHome}/lite-xl/plugins/gui_filepicker.lua".source = "${lite-xl-plugins-src}/plugins/gui_filepicker.lua";})
     (mkIf cfg.plugins.ide {
       home.file."${config.xdg.configHome}/lite-xl/plugins/ide.lua".source = "${build-src}/plugins/ide.lua";
       programs.lite-xl.plugins.build = true;
@@ -517,14 +574,18 @@ in {
     (mkIf cfg.plugins.language_batch {home.file."${config.xdg.configHome}/lite-xl/plugins/language_batch.lua".source = "${lite-xl-plugins-src}/plugins/language_batch.lua";})
     (mkIf cfg.plugins.language_bib {home.file."${config.xdg.configHome}/lite-xl/plugins/language_bib.lua".source = "${lite-xl-plugins-src}/plugins/language_bib.lua";})
     (mkIf cfg.plugins.language_blade {home.file."${config.xdg.configHome}/lite-xl/plugins/language_blade.lua".source = "${lite-xl-plugins-src}/plugins/language_blade.lua";})
+    (mkIf cfg.plugins.language_blueprint {home.file."${config.xdg.configHome}/lite-xl/plugins/language_blueprint.lua".source = "${lite-xl-plugins-src}/plugins/language_blueprint.lua";})
+    (mkIf cfg.plugins.language_c7 {home.file."${config.xdg.configHome}/lite-xl/plugins/language_c7.lua".source = "${lite-xl-plugins-src}/plugins/language_c7.lua";})
     (mkIf cfg.plugins.language_caddyfile {home.file."${config.xdg.configHome}/lite-xl/plugins/language_caddyfile.lua".source = "${lite-xl-plugins-src}/plugins/language_caddyfile.lua";})
     (mkIf cfg.plugins.language_cmake {home.file."${config.xdg.configHome}/lite-xl/plugins/language_cmake.lua".source = "${lite-xl-plugins-src}/plugins/language_cmake.lua";})
     (mkIf cfg.plugins.language_containerfile {home.file."${config.xdg.configHome}/lite-xl/plugins/language_containerfile".source = "${language_containerfile-src}";})
     (mkIf cfg.plugins.language_crystal {home.file."${config.xdg.configHome}/lite-xl/plugins/language_crystal.lua".source = "${language_crystal-src}/language_crystal.lua";})
     (mkIf cfg.plugins.language_csharp {home.file."${config.xdg.configHome}/lite-xl/plugins/language_csharp.lua".source = "${lite-xl-plugins-src}/plugins/language_csharp.lua";})
+    (mkIf cfg.plugins.language_cue {home.file."${config.xdg.configHome}/lite-xl/plugins/language_cue.lua".source = "${lite-xl-plugins-src}/plugins/language_cue.lua";})
     (mkIf cfg.plugins.language_d {home.file."${config.xdg.configHome}/lite-xl/plugins/language_d.lua".source = "${lite-xl-plugins-src}/plugins/language_d.lua";})
     (mkIf cfg.plugins.language_dart {home.file."${config.xdg.configHome}/lite-xl/plugins/language_dart.lua".source = "${lite-xl-plugins-src}/plugins/language_dart.lua";})
     (mkIf cfg.plugins.language_diff {home.file."${config.xdg.configHome}/lite-xl/plugins/language_diff.lua".source = "${lite-xl-plugins-src}/plugins/language_diff.lua";})
+    (mkIf cfg.plugins.language_edp {home.file."${config.xdg.configHome}/lite-xl/plugins/language_edp.lua".source = "${lite-xl-plugins-src}/plugins/language_edp.lua";})
     (mkIf cfg.plugins.language_elixir {home.file."${config.xdg.configHome}/lite-xl/plugins/language_elixir.lua".source = "${lite-xl-plugins-src}/plugins/language_elixir.lua";})
     (mkIf cfg.plugins.language_elm {home.file."${config.xdg.configHome}/lite-xl/plugins/language_elm.lua".source = "${lite-xl-plugins-src}/plugins/language_elm.lua";})
     (mkIf cfg.plugins.language_env {home.file."${config.xdg.configHome}/lite-xl/plugins/language_env.lua".source = "${language_env-src}/language_env.lua";})
@@ -538,6 +599,7 @@ in {
     (mkIf cfg.plugins.language_gmi {home.file."${config.xdg.configHome}/lite-xl/plugins/language_gmi.lua".source = "${lite-xl-plugins-src}/plugins/language_gmi.lua";})
     (mkIf cfg.plugins.language_go {home.file."${config.xdg.configHome}/lite-xl/plugins/language_go.lua".source = "${lite-xl-plugins-src}/plugins/language_go.lua";})
     (mkIf cfg.plugins.language_gravity {home.file."${config.xdg.configHome}/lite-xl/plugins/language_gravity.lua".source = "${lite-xl-plugins-src}/plugins/language_gravity.lua";})
+    (mkIf cfg.plugins.language_hare {home.file."${config.xdg.configHome}/lite-xl/plugins/language_hare.lua".source = "${lite-xl-plugins-src}/plugins/language_hare.lua";})
     (mkIf cfg.plugins.language_haxe {home.file."${config.xdg.configHome}/lite-xl/plugins/language_haxe.lua".source = "${lite-xl-plugins-src}/plugins/language_haxe.lua";})
     (mkIf cfg.plugins.language_hlsl {home.file."${config.xdg.configHome}/lite-xl/plugins/language_hlsl.lua".source = "${lite-xl-plugins-src}/plugins/language_hlsl.lua";})
     (mkIf cfg.plugins.language_hs {home.file."${config.xdg.configHome}/lite-xl/plugins/language_hs.lua".source = "${lite-xl-plugins-src}/plugins/language_hs.lua";})
@@ -546,6 +608,7 @@ in {
     (mkIf cfg.plugins.language_ini {home.file."${config.xdg.configHome}/lite-xl/plugins/language_ini.lua".source = "${lite-xl-plugins-src}/plugins/language_ini.lua";})
     (mkIf cfg.plugins.language_java {home.file."${config.xdg.configHome}/lite-xl/plugins/language_java.lua".source = "${lite-xl-plugins-src}/plugins/language_java.lua";})
     (mkIf cfg.plugins.language_jiyu {home.file."${config.xdg.configHome}/lite-xl/plugins/language_jiyu.lua".source = "${lite-xl-plugins-src}/plugins/language_jiyu.lua";})
+    (mkIf cfg.plugins.language_json {home.file."${config.xdg.configHome}/lite-xl/plugins/language_json.lua".source = "${lite-xl-plugins-src}/plugins/language_json.lua";})
     (mkIf cfg.plugins.language_jsx {home.file."${config.xdg.configHome}/lite-xl/plugins/language_jsx.lua".source = "${lite-xl-plugins-src}/plugins/language_jsx.lua";})
     (mkIf cfg.plugins.language_julia {home.file."${config.xdg.configHome}/lite-xl/plugins/language_julia.lua".source = "${lite-xl-plugins-src}/plugins/language_julia.lua";})
     (mkIf cfg.plugins.language_ksy {
@@ -559,6 +622,7 @@ in {
     (mkIf cfg.plugins.language_lobster {home.file."${config.xdg.configHome}/lite-xl/plugins/language_lobster.lua".source = "${lite-xl-plugins-src}/plugins/language_lobster.lua";})
     (mkIf cfg.plugins.language_lox {home.file."${config.xdg.configHome}/lite-xl/plugins/language_lox.lua".source = "${lite-xl-plugins-src}/plugins/language_lox.lua";})
     (mkIf cfg.plugins.language_make {home.file."${config.xdg.configHome}/lite-xl/plugins/language_make.lua".source = "${lite-xl-plugins-src}/plugins/language_make.lua";})
+    (mkIf cfg.plugins.language_marte {home.file."${config.xdg.configHome}/lite-xl/plugins/language_marte.lua".source = "${lite-xl-plugins-src}/plugins/language_marte.lua";})
     (mkIf cfg.plugins.language_meson {home.file."${config.xdg.configHome}/lite-xl/plugins/language_meson.lua".source = "${lite-xl-plugins-src}/plugins/language_meson.lua";})
     (mkIf cfg.plugins.language_miniscript {home.file."${config.xdg.configHome}/lite-xl/plugins/language_miniscript.lua".source = "${lite-xl-plugins-src}/plugins/language_miniscript.lua";})
     (mkIf cfg.plugins.language_moon {home.file."${config.xdg.configHome}/lite-xl/plugins/language_moon.lua".source = "${lite-xl-plugins-src}/plugins/language_moon.lua";})
@@ -618,10 +682,15 @@ in {
     (mkIf cfg.plugins.linter_zig {home.file."${config.xdg.configHome}/lite-xl/plugins/linter_zig.lua".source = "${linter-src}/linter_zig.lua";})
     (mkIf cfg.plugins.lintplus {home.file."${config.xdg.configHome}/lite-xl/plugins/lintplus".source = "${lintplus-src}";})
     (mkIf cfg.plugins.lite-debugger {home.file."${config.xdg.configHome}/lite-xl/plugins/lite-debugger.lua".source = "${lite-xl-plugins-src}/plugins/lite-debugger.lua";})
+    (mkIf cfg.plugins.lite-xl-vibe {home.file."${config.xdg.configHome}/lite-xl/plugins/lite-xl-vibe".source = "${lite-xl-vibe-src}";})
     (mkIf cfg.plugins.litepresence {home.file."${config.xdg.configHome}/lite-xl/plugins/litepresence".source = "${litepresence-src}";})
     (mkIf cfg.plugins.lorem {home.file."${config.xdg.configHome}/lite-xl/plugins/lorem.lua".source = "${lorem-src}/lorem.lua";})
     (mkIf cfg.plugins.lsp {
       home.file."${config.xdg.configHome}/lite-xl/plugins/lsp".source = "${lsp-src}";
+      programs.lite-xl.plugins.lintplus = true;
+      programs.lite-xl.plugins.lsp_snippets = true;
+      programs.lite-xl.plugins.settings = true;
+      programs.lite-xl.plugins.snippets = true;
       programs.lite-xl.plugins.widget = true;
     })
     (mkIf cfg.plugins.lsp_snippets {
@@ -672,12 +741,16 @@ in {
     (mkIf cfg.plugins.smoothcaret {home.file."${config.xdg.configHome}/lite-xl/plugins/smoothcaret.lua".source = "${lite-xl-plugins-src}/plugins/smoothcaret.lua";})
     (mkIf cfg.plugins.snippets {home.file."${config.xdg.configHome}/lite-xl/plugins/snippets.lua".source = "${lsp_snippets-src}/snippets.lua";})
     (mkIf cfg.plugins.sort {home.file."${config.xdg.configHome}/lite-xl/plugins/sort.lua".source = "${lite-xl-plugins-src}/plugins/sort.lua";})
+    (mkIf cfg.plugins.sortcss {home.file."${config.xdg.configHome}/lite-xl/plugins/sortcss".source = "${sortcss-src}";})
     (mkIf cfg.plugins.spellcheck {home.file."${config.xdg.configHome}/lite-xl/plugins/spellcheck.lua".source = "${lite-xl-plugins-src}/plugins/spellcheck.lua";})
     (mkIf cfg.plugins.statusclock {home.file."${config.xdg.configHome}/lite-xl/plugins/statusclock.lua".source = "${lite-xl-plugins-src}/plugins/statusclock.lua";})
     (mkIf cfg.plugins.sticky_scroll {home.file."${config.xdg.configHome}/lite-xl/plugins/sticky_scroll.lua".source = "${lite-xl-plugins-src}/plugins/sticky_scroll.lua";})
+    (mkIf cfg.plugins.su_save {home.file."${config.xdg.configHome}/lite-xl/plugins/su_save.lua".source = "${lite-xl-plugins-src}/plugins/su_save.lua";})
     (mkIf cfg.plugins.svg_screenshot {home.file."${config.xdg.configHome}/lite-xl/plugins/svg_screenshot.lua".source = "${lite-xl-plugins-src}/plugins/svg_screenshot.lua";})
     (mkIf cfg.plugins.tab_switcher {home.file."${config.xdg.configHome}/lite-xl/plugins/tab_switcher.lua".source = "${lite-xl-plugins-src}/plugins/tab_switcher.lua";})
     (mkIf cfg.plugins.tabnumbers {home.file."${config.xdg.configHome}/lite-xl/plugins/tabnumbers.lua".source = "${lite-xl-plugins-src}/plugins/tabnumbers.lua";})
+    (mkIf cfg.plugins.terminal {home.file."${config.xdg.configHome}/lite-xl/plugins/terminal".source = "${terminal-src}/plugins/terminal";})
+    (mkIf cfg.plugins.tetris {home.file."${config.xdg.configHome}/lite-xl/plugins/tetris.lua".source = "${lite-xl-plugins-src}/plugins/tetris.lua";})
     (mkIf cfg.plugins.texcompile {
       home.file."${config.xdg.configHome}/lite-xl/plugins/texcompile.lua".source = "${lite-xl-plugins-src}/plugins/texcompile.lua";
       programs.lite-xl.plugins.console = true;
@@ -685,15 +758,14 @@ in {
     (mkIf cfg.plugins.theme16 {home.file."${config.xdg.configHome}/lite-xl/plugins/theme16".source = "${theme16-src}";})
     (mkIf cfg.plugins.themeselect {home.file."${config.xdg.configHome}/lite-xl/plugins/themeselect.lua".source = "${lite-xl-plugins-src}/plugins/themeselect.lua";})
     (mkIf cfg.plugins.titleize {home.file."${config.xdg.configHome}/lite-xl/plugins/titleize.lua".source = "${lite-xl-plugins-src}/plugins/titleize.lua";})
-    (mkIf cfg.plugins.todotreeview {home.file."${config.xdg.configHome}/lite-xl/plugins/todotreeview.lua".source = "${todotreeview-src}/todotreeview.lua";})
-    (mkIf cfg.plugins.todotreeview-xl {home.file."${config.xdg.configHome}/lite-xl/plugins/todotreeview-xl.lua".source = "${todotreeview-src}/todotreeview-xl.lua";})
+    (mkIf cfg.plugins.todotreeview {home.file."${config.xdg.configHome}/lite-xl/plugins/todotreeview-xl.lua".source = "${todotreeview-src}/todotreeview-xl.lua";})
     (mkIf cfg.plugins.togglesnakecamel {home.file."${config.xdg.configHome}/lite-xl/plugins/togglesnakecamel.lua".source = "${lite-xl-plugins-src}/plugins/togglesnakecamel.lua";})
     (mkIf cfg.plugins.treeview-extender {home.file."${config.xdg.configHome}/lite-xl/plugins/treeview-extender".source = "${treeview-extender-src}";})
     (mkIf cfg.plugins.typingspeed {home.file."${config.xdg.configHome}/lite-xl/plugins/typingspeed.lua".source = "${lite-xl-plugins-src}/plugins/typingspeed.lua";})
     (mkIf cfg.plugins.unboundedscroll {home.file."${config.xdg.configHome}/lite-xl/plugins/unboundedscroll.lua".source = "${lite-xl-plugins-src}/plugins/unboundedscroll.lua";})
     (mkIf cfg.plugins.updatechecker {home.file."${config.xdg.configHome}/lite-xl/plugins/updatechecker".source = "${updatechecker-src}";})
-    (mkIf cfg.plugins.vibe {home.file."${config.xdg.configHome}/lite-xl/plugins/vibe".source = "${vibe-src}";})
     (mkIf cfg.plugins.visu {home.file."${config.xdg.configHome}/lite-xl/plugins/visu".source = "${visu-src}";})
+    (mkIf cfg.plugins.wal {home.file."${config.xdg.configHome}/lite-xl/plugins/wal".source = "${wal-src}";})
     (mkIf cfg.plugins.widget {home.file."${config.xdg.configHome}/lite-xl/libraries/widget".source = "${widget-src}";})
     (mkIf cfg.plugins.wordcount {home.file."${config.xdg.configHome}/lite-xl/plugins/wordcount.lua".source = "${lite-xl-plugins-src}/plugins/wordcount.lua";})
     # dummy dependencies
@@ -702,6 +774,10 @@ in {
         {
           assertion = !cfg.plugins.encoding;
           message = "encoding is only a dummy";
+        }
+        {
+          assertion = !cfg.plugins.json;
+          message = "json is only a dummy";
         }
         {
           assertion = !cfg.plugins.lsp_c;

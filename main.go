@@ -8,6 +8,8 @@ import (
 	"os/exec"
 	"sort"
 	"strings"
+
+	"github.com/tailscale/hujson"
 )
 
 type Manifest struct {
@@ -22,7 +24,7 @@ type Dependency struct {
 type Addon struct {
 	Description  string
 	Id           string
-	Mod_version  string
+	Mod_version  json.Number
 	Name         string
 	Path         string
 	Remote       string
@@ -160,6 +162,7 @@ func (a *Addon) GetDependenciesConfig() string {
 }
 
 func (r *Remote) createFile() {
+	println(r.gitUrl)
 	r.LoadManifest()
 
 	for _, a := range r.manifest.Addons {
@@ -329,7 +332,9 @@ func assertNoError(err error) {
 
 func mustUnmarshal[T any](data []byte) T {
 	res := new(T)
-	err := json.Unmarshal(data, res)
+	cleanData, err := hujson.Standardize(data)
+	assertNoError(err)
+	err = json.Unmarshal(cleanData, res)
 	assertNoError(err)
 	return *res
 }
